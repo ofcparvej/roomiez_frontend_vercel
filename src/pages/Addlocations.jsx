@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { Textarea } from "@material-tailwind/react";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Addlocations = () => {
 
@@ -20,7 +21,8 @@ const Addlocations = () => {
 
       async function fetchData() {
         const token11 = localStorage.getItem('token11');
-        e.preventDefault();
+
+        // e.preventDefault();
         const params = {
           collegeCode:collegeCode
         }
@@ -69,7 +71,7 @@ const Addlocations = () => {
       async function fetchData2(){
         const token22 = localStorage.getItem('token22');
         const user = {token22}
-        e.preventDefault();
+        // e.preventDefault();
         try {
           const res= await axios.post("https://roomiez-backend-deployment.onrender.com/api/v1/loc/details",user)
           console.log("locationDetails Respo =>>" , res)
@@ -81,9 +83,11 @@ const Addlocations = () => {
       // await fetchData2();
     };
 
+     const notify = () => toast.success("Image Uploaded successfully !");
+
         
 
-
+   
   return (
   <div className='  h-screen w-full '>
     <div  className=' absolute h-screen w-full'>
@@ -113,9 +117,26 @@ const Addlocations = () => {
       </div>
     </div>
     <div className='absolute bottom-0 flex justify-center items-center  w-full  '>
-          <button onClick={handleSubmit} className=' relative   bottom-10 bg-slate-400 hover:bg-slate-300 border h-20 w-[200px] rounded-lg  '>
+          <button onClick={()=>{
+            if(!houseOwnerName 
+             || !locationAddress
+             || !contactNumber 
+             || !collegeCode 
+             || !expectedRent
+             || !description
+             || !lat
+             || !lng
+             || ! contributorEmailId){
+
+              toast.error(" ❌ All fields are compolsory !");
+            
+             }else{
+              handleSubmit();
+             }
+          }} className=' relative   bottom-10 bg-slate-400 hover:bg-slate-300 border h-20 w-[200px] rounded-lg  '>
               Submit
           </button>
+          <ToastContainer autoClose={10000} />
     </div>
   </div> 
   )
