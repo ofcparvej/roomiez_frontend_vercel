@@ -25,11 +25,14 @@ const Addlocations = () => {
           collegeCode:collegeCode
         }
 
+        // const GO_MAP_KEY = import.meta.env.VITE_GOMAPPRO_KEY;
+        // console.log("go_map_key-----<" , GO_MAP_KEY)
+
         try {
         const data= await axios.get("https://roomiez-backend-deployment.onrender.com/api/v1/getcollegeaddress",{params});
         const destinationAddress = data.data.found_collegeAdd[0].address;
         const originAddress = locationAddress;
-        const calculatedData = await axios.get(`https://maps.gomaps.pro/maps/api/distancematrix/json?destinations=${destinationAddress}&origins=${originAddress}&key=AlzaSyh2xhyt4GcDmc1QOC0XF1-e5Dt2ZyAcGGo`);
+        const calculatedData = await axios.get(`https://maps.gomaps.pro/maps/api/distancematrix/json?destinations=${destinationAddress}&origins=${originAddress}&key=AlzaSyswS8GGydDppCpk-jWaqYiQXCJfaEReBgd`);
         const new_origin  = calculatedData.data.origin_addresses[0];
         const new_destination = calculatedData.data.destination_addresses[0];
         const foundDistance = calculatedData.data.rows[0].elements[0].distance.text;
@@ -50,10 +53,14 @@ const Addlocations = () => {
                       contributorEmailId
                     }
 
-        const res= await axios.post("http://localhost:7000/api/v1/loc/",user)
+        const res= await axios.post("https://roomiez-backend-deployment.onrender.com/api/v1/loc/",user)
+        // console.log("RESPONSE IN ADDLOC -> " , res);
         let token22 = res.data.token2;
+        console.log("RES_DATA------>" , res);
         localStorage.setItem('token22', token22);
-        res.data && fetchData2() && window.location.replace("/addlocationdetails") ;
+        res.data && fetchData2();
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        window.location.replace("/addlocationdetails") ;
         } catch (error) {
           console.log(error)
         }
@@ -64,12 +71,14 @@ const Addlocations = () => {
         const user = {token22}
         e.preventDefault();
         try {
-          const res= await axios.post("http://localhost:7000/api/v1/loc/details",user)
+          const res= await axios.post("https://roomiez-backend-deployment.onrender.com/api/v1/loc/details",user)
+          console.log("locationDetails Respo =>>" , res)
         } catch (error) {
           console.log(error)
         }
       }
       await fetchData();
+      // await fetchData2();
     };
 
         

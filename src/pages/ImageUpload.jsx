@@ -33,14 +33,14 @@ const ImageUpload = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const result = await axios.post("http://localhost:7000/api/v1/imageUpload" , {
+        const result = await axios.post("https://roomiez-backend-deployment.onrender.com/api/v1/imageUpload" , {
             image:image           //from state
         } )
 
         try {
             let url = result.data.url;
             const t2 = localStorage.getItem('token22');
-            const result2 = await axios.post("http://localhost:7000/api/v1/imagetodb" , {
+            const result2 = await axios.post("https://roomiez-backend-deployment.onrender.com/api/v1/imagetodb" , {
                 url:url,
                 t2:t2           //from state
             } )
@@ -52,6 +52,7 @@ const ImageUpload = () => {
               if(currUser=='Admin') navigate('/admin')
                 else navigate('/home')
             }
+            // console.log("db obj----------------------->" , result2);
         } catch(err){
             console.log(err);
         }

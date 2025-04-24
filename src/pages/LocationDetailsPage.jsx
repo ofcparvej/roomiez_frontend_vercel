@@ -71,9 +71,10 @@ const LocationDetailsPage = () => {
       const params = {
         currLocationid:currLocationid
       }
+      // console.log("params->" , params)
       await axios.get('https://roomiez-backend-deployment.onrender.com/api/v1/loc/locimgs', { params })
       .then(response => {
-        console.log("res R  res=>",response.data.foundLoc[0]);
+        console.log("res R ================================================================================== res=>",response);
         setHouseOwnerName(response.data.foundLoc[0].houseOwnerName);
         setContactNumber(response.data.foundLoc[0].contactNumber );
         setDistance(response.data.foundLoc[0].distance);
@@ -87,7 +88,9 @@ const LocationDetailsPage = () => {
         setLat(response.data.foundLoc[0].lat);
         setLgn(response.data.foundLoc[0].lng);
       })
-      .catch(error => {
+      .catch( (error) => {
+        // console.log("lat=>",lng)
+        console.log("=============================================================================================HELLO");
         console.error('Error:', error);
       });
     }
@@ -108,36 +111,36 @@ const LocationDetailsPage = () => {
     <div className='bg-gray-200'>
       <div className = ' z-10 sticky top-0 left-0  border   bg-gray-200 flex flex-row  justify-center ' >
         <>
-          <div className='   top-0   flex items-center shadow-lg w-full   h-[135px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
+          <div className='   top-0   flex items-center shadow-lg w-full   h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
             <div className=' relative top-2  md:left-0      '>
-                <img className='h-[300px] w-[300px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
+                <img className='h-[210px] w-[210px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
             </div>
             <div className='    relative flex flex-row justify-between  md:gap-20  gap-2  '>
               <Tooltip content="Material Tailwind">
-                <Link className='relative text-2xl hover:text-slate-400   ' activeClass="active" to="section1" spy={true} smooth={true} duration={500}>
+                <Link className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' activeClass="active" to="section1" spy={true} smooth={true} duration={500}>
                   Location View
                 </Link>
               </Tooltip>
-              <Link className='relative text-2xl hover:text-slate-400  ' activeClass="active" to="section2" spy={true} smooth={true} duration={500}>
+              <Link className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' activeClass="active" to="section2" spy={true} smooth={true} duration={500}>
                 Details
               </Link>
-              <Link className='relative text-2xl hover:text-slate-400  ' activeClass="active" to="section3" spy={true} smooth={true} duration={500}>
+              <Link className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' activeClass="active" to="section3" spy={true} smooth={true} duration={500}>
                 Map View
               </Link>
-              <div className='relative text-2xl hover:text-slate-400   ' onClick={()=>{navigate("/home")}}> <button>Home</button></div>
+              <div className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' onClick={()=>{navigate("/home")}}> <button>Home</button></div>
               <div>
                 { data.accountType!="Student"  && currUser==contributor      ? (
                   <>
                     <Tooltip content="  Is Available">
                       <div>
                         <label class="inline-flex items-center cursor-pointer"> 
-                          <button className='primary-btn' onClick={handleChange}>  {<span class="  font-medium   text-xl ">{avail ? (  <h1 className=' text-green-800'>{"Available"}</h1>) : ( <h1 className=' text-red-800'>{"Not Available"}</h1> )}</span>} </button>
+                          <button className='primary-btn' onClick={handleChange}>  {<span class="  font-medium   text-xl ">{avail ? (  <h1 className=' text-green-800'>{"Available"}</h1>) : ( <h1 className='  relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500'>{"Not Available"}</h1> )}</span>} </button>
                         </label>
                       </div>
                     </Tooltip>
                   </>
                  ):(<div>
-                  {<span class="  font-medium   text-xl ">{avail ? (  <h1 className=' text-green-900'>{"Available"}</h1>) : ( <h1 className=' text-red-800'>{"Not Available"}</h1> )}</span>} 
+                  {<span class="  font-medium   text-xl ">{avail ? (  <h1 className=' text-green-400 hover:text-green-500'>{"Available"}</h1>) : ( <h1 className=' relative text-md  text-red-300 h-8  text-center  rounded-md hover:text-red-400'>{"Not Available"}</h1> )}</span>} 
                 </div>)}
               </div>
             </div>
@@ -153,7 +156,7 @@ const LocationDetailsPage = () => {
             }
           </ImageCarousel>
       </div>
-      <div ref={myRef} id="section2" className='h-screen w-full  '>
+      <div ref={myRef} id="section2" className='relative h-screen w-full top-3  '>
         <div class=" bg-gray-200   border  rounded overflow-hidden shadow-lg  min-h-screen justify-center items-center  flex flex-row    ">
           <div className='relative   bg-slate-300  md:w-1/3 right-2  flex items-center md:h-full hover:shadow-lg  sm:w-1/2  sm:h-screen     '>   
             <ul className='relative       flex-col   gap-y-6      h-[500px]    flex  justify-center  items-start    ' >
@@ -172,8 +175,10 @@ const LocationDetailsPage = () => {
           </div>
         </div>
       </div>
-      <div className=' ' id='section3'>
-        <Loc  props={pos}    />
+      <div className='relative h-screen w-full  bg-gray-200 top-32   ' id='section3'>
+        {/* <div className='relative    min-h-screen justify-center bottom-[-90px]  '> */}
+        <Loc   props={pos}    />
+        {/* </div> */}
       </div>
       { data.accountType!="Student"  && currUser==contributor      ? (
         <>
@@ -185,7 +190,7 @@ const LocationDetailsPage = () => {
           </div>
         </Tooltip>
         </>
-        ):(<div></div>)
+        ):(<div ></div>)
       }
      </div>
     </>

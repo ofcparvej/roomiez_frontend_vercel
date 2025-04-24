@@ -87,12 +87,13 @@ const [lat , setLat]= useState()
             mapContainerStyle={{width:'70%' , height:'70%'}}
             onLoad={(map) => setMap(map)}
             >
-
-            <div className='relative w-12 left-1/2 top-2    hover:bg-slate-600  '>
-            <button className=' border bg-white  hover:bg-slate-600 rounded-md h-[50px] ' onClick={()=>map.panTo(center)}>Your Location</button>
+             <div className=' relative   flex flex-row gap-x-10'>
+            <div className='relative w-12 left-1/2 top-2    hover:bg-slate-600   '>
+            <button className=' px-4 py-2 rounded-md border border-neutral-300 bg-neutral-100 text-neutral-500 text-sm hover:-translate-y-1 transform transition duration-200 hover:shadow-md ' onClick={()=>map.panTo(center)}>Your Location</button>
             </div>
             <div className='relative w-12 left-1/2 top-2    hover:bg-slate-600  '>
-            <button className=' border bg-white  hover:bg-slate-600 rounded-md h-[50px] ' onClick={()=>map.panTo(gcoea)}>College </button>
+            <button className=' px-4 py-2 rounded-md border border-neutral-300 bg-neutral-100 text-neutral-500 text-sm hover:-translate-y-1 transform transition duration-200 hover:shadow-md ' onClick={()=>map.panTo(gcoea)}>See College </button>
+            </div>
             </div>
 
 

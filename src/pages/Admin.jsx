@@ -3,6 +3,8 @@ import { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import {useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { logInUser } from '../store/slices/authSlice';
 
 
 const Admin = () => {
@@ -12,11 +14,14 @@ const Admin = () => {
     history.go(1);
   };
 
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+
     const data = useSelector((state) => state.auth);
 
-    if(data.accountType==""){
-     navigate("/");
-    }
+    // if(data.accountType==""){
+    //  navigate("/");
+    // }
 
   // const navigate = useNavigate();
   const [email , setEmail] = useState('');
@@ -34,10 +39,15 @@ const Admin = () => {
        
        let token11 = res.data.token;
        localStorage.setItem('token11', token11);
+      //  dispatch(logInUser(response));
+           const {email , accountType} = res.data;
+            const response = { email , accountType };
+            dispatch(logInUser(response));
+            res.data && navigate("/admin");
 
-        if(res.data.accountType == 'Admin'){
-          navigate("/admin");
-        }
+        // if(res.data.accountType == 'Admin'){
+        //   navigate("/admin");
+        // }
 
       } catch (error) {
         console.log(error)
@@ -48,14 +58,14 @@ const Admin = () => {
   return (
     <>
       <div className='h-screen bg-gray-200 overflow-y-hidden     '>
-          <div className='   top-0   flex items-center shadow-lg   h-[135px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
+          <div className='   top-0   flex items-center shadow-lg   h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
               <div className=' relative top-2    left-[100px] '>
-                  <img className='h-[300px] w-[300px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
+                  <img className='h-[210px] w-[210px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
               <div className='relative flex flex-row justify-between px-[100px] gap-32  '>
-                <div className='relative text-2xl '> <button>Docs</button></div>
-                <div className='relative text-2xl  '> <button>Home</button></div>
-                <div className='relative text-2xl  '> <button>About Us</button></div>
+                {/* <div className='relative text-2xl '> <button>Docs</button></div> */}
+                {/* <div className='relative text-2xl  '> <button>Home</button></div> */}
+                {/* <div className='relative text-2xl  '> <button>About Us</button></div> */}
               </div>
           </div>
       
@@ -69,7 +79,7 @@ const Admin = () => {
                   <div>
                     <>
                       <div class="relative flex flex-row  justify-center items-center space-x-2  bg-gray-200   " >
-                        <div className=' flex border h-[500px] w-2/3 items-center justify-center bg-white shadow-md '>
+                        <div className=' flex border h-[300px] w-2/3 items-center justify-center bg-white shadow-md '>
                             <div className='flex flex-col'>
                             <input type="text" value={email}  className=" h-7 px-3 my-3 outline-none  bg-gray-100  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700   text-center font-light" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
                             <input type="password" value={password} className=" h-7 px-3 my-3 outline-none  bg-gray-100  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700   text-center font-light" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}/> 

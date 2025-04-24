@@ -57,14 +57,14 @@ const filteredClgs = colleges.filter((res) => res.collegeName==searchText)
     <div className='  '>
       <div className = ' z-10 sticky top-0 left-0  border  h-[55px] bg-slate-400 flex flex-row space-x-[150px] justify-center ' > 
         <>
-          <div className='    top-0   flex items-center shadow-lg h-[135px] md:h-[135px] bg-slate-200  z-10 sticky  w-screen  border  flex-row  justify-between   ' >   
+          <div className='    top-0   flex items-center shadow-lg h-[135px] md:h-[90px] bg-slate-200  z-10 sticky  w-screen  border  flex-row  justify-between   ' >   
               <div className=' relative top-2    left-[100px] '>
-                  <img className='h-[300px] w-[300px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
+                  <img className='h-[210px] w-[210px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
               <div className='relative flex flex-row justify-between px-[100px] gap-32   '>
-                <div className='relative text-2xl hover:text-slate-400 '> <button >Home</button></div>
+                {/* <div className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  '> <button >Home</button></div> */}
                 <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input>
-                <div > <button className='relative text-2xl bg-red-100 h-8  text-center hover:shadow-md rounded-md    ' onClick={ ()=>{  console.log("clicked");    dispatch(logOutUser()) ; navigate("/")    }   }>Reset</button></div>
+                <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500    ' onClick={ ()=>{  console.log("clicked");    dispatch(logOutUser()) ; navigate("/")    }   }>Logout</button></div>
               </div>
           </div>
         </>
