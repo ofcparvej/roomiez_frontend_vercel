@@ -27,16 +27,16 @@ const Addlocations = () => {
           collegeCode:collegeCode
         }
 
-        // const GO_MAP_KEY = import.meta.env.VITE_GOMAPPRO_KEY;
-        // console.log("go_map_key-----<" , GO_MAP_KEY)
+        const GO_MAP_KEY = import.meta.env.VITE_GOMAPPRO_KEY;
+
 
         try {
         const data= await axios.get("https://roomiez-backend-deployment.onrender.com/api/v1/getcollegeaddress",{params});
         const destinationAddress = data.data.found_collegeAdd[0].address;
         const originAddress = locationAddress;
-        const calculatedData = await axios.get(`https://maps.gomaps.pro/maps/api/distancematrix/json?destinations=${destinationAddress}&origins=${originAddress}&key=AlzaSyswS8GGydDppCpk-jWaqYiQXCJfaEReBgd`);
+        const calculatedData = await axios.get(`https://maps.gomaps.pro/maps/api/distancematrix/json?destinations=${destinationAddress}&origins=${originAddress}&key=${GO_MAP_KEY}`);
         const new_origin  = calculatedData.data.origin_addresses[0];
-        const new_destination = calculatedData.data.destination_addresses[0];
+        const new_destination = calculatedData.data.destination_addresses[0]; 
         const foundDistance = calculatedData.data.rows[0].elements[0].distance.text;
         const timetoreach = calculatedData.data.rows[0].elements[0].distance.duration;
 
@@ -73,7 +73,8 @@ const Addlocations = () => {
         const user = {token22}
         // e.preventDefault();
         try {
-          const res= await axios.post("https://roomiez-backend-deployment.onrender.com/api/v1/loc/details",user)
+          const res= await axios.post("https://roomiez-backend-deployment.onrender.com/api/v1/loc/details",user)      
+
           console.log("locationDetails Respo =>>" , res)
         } catch (error) {
           console.log(error)
