@@ -59,7 +59,7 @@ const Admin = () => {
     <>
       <div className='h-screen bg-gray-200 overflow-y-hidden     '>
           <div className='   top-0   flex items-center shadow-lg   h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
-              <div className=' relative top-2    left-[100px] '>
+              <div className='relative top-2  sm:left-12    md:left-[100px] '>
                   <img className='h-[210px] w-[210px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
               <div className='relative flex flex-row justify-between px-[100px] gap-32  '>
@@ -70,17 +70,17 @@ const Admin = () => {
           </div>
       
           <div className='min-h-screen'>
-            <div className='relative flex flex-col  gap-[10px] ' >
-                  <div className='relative top-[70px] flex justify-center items-center  '>
-                        <div className='relative  bg-gray-200 h-[200px] text-5xl'>
+            <div className='relative flex flex-col md:gap-[70px]  gap-[-10px]  ' >
+                  <div className='relative top-[70px] flex justify-center items-center '>
+                        <div className=' sm:text-center text-3xl   relative  bg-gray-200 h-[200px] md:text-7xl text-center md:text-center'>
                           Welcome! We're excited to have you join our community.
                       </div>
                   </div>
-                  <div>
-                    <>
-                      <div class="relative flex flex-row  justify-center items-center space-x-2  bg-gray-200   " >
-                        <div className=' flex border h-[300px] w-2/3 items-center justify-center bg-white shadow-md '>
-                            <div className='flex flex-col'>
+                  {/* <div> */}
+                    {/* <> */}
+                      <div class="relative md:flex md:flex-row  md:justify-center md:items-center md:space-x-2   bg-gray-200   flex items-center justify-center  h-[50px] top-20 " >
+                        <div className=' relative md:flex md:border md:h-[300px] md:w-2/3 md:items-center md:justify-center bg-white shadow-md  w-[450px] flex justify-center items-center h-[300px] md:top-0 top-[10px]   '>
+                            <div className='flex flex-col  w-[400px]'>
                             <input type="text" value={email}  className=" h-7 px-3 my-3 outline-none  bg-gray-100  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700   text-center font-light" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
                             <input type="password" value={password} className=" h-7 px-3 my-3 outline-none  bg-gray-100  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700   text-center font-light" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}/> 
                             <button className='relative border bg-slate-400 border-gray-200 hover:border-gray-700  text-white font-light '  onClick={handleSubmit } >Sign In</button> 
@@ -88,8 +88,8 @@ const Admin = () => {
                         </div>
                       </div>
 
-                    </>
-                  </div>
+                    {/* </> */}
+                  {/* </div> */}
                   </div>
           </div>
         </div>

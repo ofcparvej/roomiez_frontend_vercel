@@ -53,9 +53,9 @@ const LocationsComponent = (props) => {
 
 
 
-        <div>
+        {/* <div className='  relative  h-[50px] w-[50px] border-2 border-black m-2 '> */}
 
-        <div class="max-w-sm rounded overflow-hidden shadow-lg h-[400px]">
+        <div class="max-w-sm rounded overflow-hidden shadow-lg h-[300px]">
 
           <div class="px-6 py-4   space-y-4">
             <div class="font-bold text-xl mb-2">Area : {locaddress}</div>
@@ -91,7 +91,7 @@ const LocationsComponent = (props) => {
         </div>
 
 
-        </div>
+        {/* </div> */}
 
  
 

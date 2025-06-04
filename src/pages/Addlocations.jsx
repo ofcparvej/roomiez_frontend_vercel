@@ -1,8 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState  } from 'react'
 import axios from 'axios'
 import { Textarea } from "@material-tailwind/react";
 import { ToastContainer, toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Addlocations = () => {
 
@@ -14,7 +16,12 @@ const Addlocations = () => {
     const [description , setdescription] = useState('')
     const [lat , setLatitude] = useState('');
     const [lng , setLongitude] = useState('')
-    const [contributorEmailId , setcontributorEmailId] = useState('');
+    const [contributorName , setcontributorName] = useState('');
+      const [contributorContactNumber , setcontributorContactNumber] = useState('');
+
+      const { id } = useParams();
+
+      const navigate = useNavigate();
 
 
     const handleSubmit = async (e) => {
@@ -52,7 +59,9 @@ const Addlocations = () => {
                       timetoreach,
                       lat,
                       lng,
-                      contributorEmailId
+                      contributorName,
+                       contributorContactNumber
+
                     }
 
         const res= await axios.post("https://roomiez-backend-deployment.onrender.com/api/v1/loc/",user)
@@ -62,7 +71,7 @@ const Addlocations = () => {
         localStorage.setItem('token22', token22);
         res.data && fetchData2();
         await new Promise(resolve => setTimeout(resolve, 5000));
-        window.location.replace("/addlocationdetails") ;
+        window.location.replace(`/addlocationdetails/${id}`) ;
         } catch (error) {
           console.log(error)
         }
@@ -92,7 +101,8 @@ const Addlocations = () => {
   return (
   <div className='  h-screen w-full '>
     <div  className=' absolute h-screen w-full'>
-      <div className='relative    flex flex-row min-h-screen justify-center items-center  border bg-slate-200   '>
+      <div className='relative    flex flex-col min-h-screen justify-center items-center  border bg-slate-200   '>
+         <div className='relative ' > <button onClick={()=>{ navigate(`/locations/${id}`)}}>prev</button>  </div>
         <div className='relative md:bg-none md:top-0   md:border  flex  md:flex-row sm:h-[950px]  sm:gap-y-16  gap-x-3 space-x-5  md:h-[800px] md:w-full  sm:flex-col sm:bg-gray-400 sm:border-none justify-center items-center   '>
           <div className='relative bg-gray-400  w-1/2  md:bottom-0 sm:bottom-14  '>
             < form className='relative flex flex-col top-1/4  md:h-1/2 justify-center items-center md:border  gap-2 sm:border-none '>
@@ -103,7 +113,8 @@ const Addlocations = () => {
               <div><input   className='border h-10 w-[500px] text-center font-light text-xl hover:border-gray-700 ' placeholder='EXPECTED RENT' onChange={(e)=>{setexpectedRent(e.target.value)}}></input></div>
               <div><input   className='border h-10 w-[500px] text-center font-light text-xl hover:border-gray-700 ' placeholder='ENTER LATITUDE' onChange={(e)=>{setLatitude(e.target.value)}}></input></div>
               <div><input   className='border h-10 w-[500px] text-center font-light text-xl hover:border-gray-700 ' placeholder='ENTER LONGITUDE' onChange={(e)=>{setLongitude(e.target.value)}}></input></div>
-              <div><input   className='border h-10 w-[500px] text-center font-light text-xl hover:border-gray-700 ' placeholder='CONTRIBUTOR EMAIL ID' onChange={(e)=>{setcontributorEmailId(e.target.value)}}></input></div>
+              <div><input   className='border h-10 w-[500px] text-center font-light text-xl hover:border-gray-700 ' placeholder='CONTRIBUTOR NAME' onChange={(e)=>{setcontributorName(e.target.value)}}></input></div>
+               <div><input   className='border h-10 w-[500px] text-center font-light text-xl hover:border-gray-700 ' placeholder='CONTRIBUTOR CONTACT NUMBER' onChange={(e)=>{setcontributorContactNumber(e.target.value)}}></input></div>
               <div></div>
             </form> 
           </div>
@@ -115,9 +126,9 @@ const Addlocations = () => {
             </form>
           </div>
         </div>
-      </div>
-    </div>
-    <div className='absolute bottom-0 flex justify-center items-center  w-full  '>
+        <div className='relative'>
+
+        <div className='absolute bottom-0 flex justify-center items-center  w-full  '>
           <button onClick={()=>{
             if(!houseOwnerName 
              || !locationAddress
@@ -127,7 +138,9 @@ const Addlocations = () => {
              || !description
              || !lat
              || !lng
-             || ! contributorEmailId){
+             || ! contributorName
+             || ! contributorContactNumber
+            ){
 
               toast.error(" ❌ All fields are compolsory !");
             
@@ -138,7 +151,35 @@ const Addlocations = () => {
               Submit
           </button>
           <ToastContainer autoClose={10000} />
+      </div>
+
+        </div>
+      </div>
     </div>
+    {/* <div className='absolute bottom-0 flex justify-center items-center  w-full  '>
+          <button onClick={()=>{
+            if(!houseOwnerName 
+             || !locationAddress
+             || !contactNumber 
+             || !collegeCode 
+             || !expectedRent
+             || !description
+             || !lat
+             || !lng
+             || ! contributorName
+             || ! contributorContactNumber
+            ){
+
+              toast.error(" ❌ All fields are compolsory !");
+            
+             }else{
+              handleSubmit();
+             }
+          }} className=' relative   bottom-10 bg-slate-400 hover:bg-slate-300 border h-20 w-[200px] rounded-lg  '>
+              Submit
+          </button>
+          <ToastContainer autoClose={10000} />
+    </div> */}
   </div> 
   )
 }

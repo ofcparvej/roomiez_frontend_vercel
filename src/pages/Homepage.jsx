@@ -43,17 +43,33 @@ const Homepage = () => {
 
  const filteredClgs = colleges.filter((res) => res.collegeName==searchText) 
 
+ const [loading, setLoading] = useState(true);
+ 
+  useEffect(() => {
+     // Simulate loading for 2 seconds
+     const timer = setTimeout(() => {
+       setLoading(false);
+     }, 2000);
+ 
+     // Cleanup timer on unmount
+     return () => clearTimeout(timer);
+   }, []);
+
+
+
+
   return (
     <div className='   '>
         <div className = ' z-10 sticky top-0 left-0  border  h-[55px] bg-slate-400 flex flex-row space-x-[150px] justify-center sm:space-x-[100px]  ' >
           <>
             <div className='   top-0   flex items-center shadow-lg w-screen   h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
               <div className=' relative top-2  sm:left-[50px]   left-[100px] '>
-                  <img className='h-[210px] w-[210px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
+                  <img className='h-[200px] w-[200px]   ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
               <div className='relative flex flex-row justify-between px-[100px] gap-32  '>
-                <div  className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' > <button onClick={()=>{navigate("/addcollege")}}>Add New College</button></div>
-                <div   className='rrelative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' > <button onClick={()=>{navigate("/addlocations")}}>Add New Location</button></div>
+                <div  className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  hidden md:block  ' > <button onClick={()=>{navigate("/addcollege")}}>Add New College</button></div>
+                
+                <div   className='rrelative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  hidden md:block  ' > <button onClick={()=>{navigate("/addlocations")}}>Add New Location</button></div>
                 <div  className='relative   '>
                   <input className='relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input>
                 </div>
@@ -61,7 +77,7 @@ const Homepage = () => {
             </div>
             </>
         </div>
-        <main className=" flex flex-row min-h-screen justify-center items-center   ">
+        {/* <main className=" flex flex-row min-h-screen justify-center items-center   ">
           <div className='  '>
             {
               filteredClgs.length > 0 ? (
@@ -72,32 +88,59 @@ const Homepage = () => {
                     </div>
                   ))}
                 </div>
-              ):( <div className=' relative  top-10   grid  bg-black bg-opacity-10 grid-cols-3   gap-4 p-4'>
-                <ul>
+              ):( <div className=' relative  top-10   bg-black bg-opacity-10'>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {colleges.map((item) => (
                   <div className='relative top-3 bg-slate-400  ' style={{ margin:"60px" }}>
                     <Dummy data ={ item }   />
                   </div>
                 ))}
-              </ul>
-              <ul>
-                {colleges.map((item) => (
-                  <div className='relative top-3 bg-slate-400 ' style={{ margin:"60px" }}>
-                    <Dummy data ={ item }   />
-                  </div>
-                ))}
-              </ul>
-              <ul>
-                {colleges.map((item) => (
-                  <div className='relative top-3 bg-slate-400 ' style={{ margin:"60px" }}>
-                    <Dummy data ={ item }   />
-                  </div>
-                ))}
-              </ul>
+              </div>
               </div>)
             }
           </div>
-        </main>
+        </main> */}
+
+
+        {
+        loading  ? (<>
+      <Shimmer/>
+        </>) :
+        (
+        <> 
+                     <main className=" flex flex-row min-h-screen justify-center items-center    ">
+        <div className='  '>
+          {
+            filteredClgs.length > 0 ? (
+              <div>
+                {filteredClgs.map((item) => (
+                  <div  key={uuidv4()} className='relative top-3   bg-black bg-opacity-10  ' style={{ margin:"60px" }}>
+                    <Dummy data ={ item }   />
+                  </div>
+                ))}
+              </div>
+            ):( <div className=' relative  top-10      bg-black bg-opacity-10 '>
+              <div  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+             
+              {colleges.map((item) => (
+               
+                <div className='relative top-3  rounded-md   bg-slate-300 shadow-md shadow-black  p-4   ' style={{ margin:"60px" }}>
+                  <Dummy data ={ item }   />
+                </div>
+              ))}
+              
+            </div>
+            </div>
+            )
+          }
+        </div>
+      </main>    
+        </>
+        ) 
+      }
+
+
+
     </div>
   )
 }

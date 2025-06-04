@@ -11,6 +11,10 @@ import { Tooltip  } from "@material-tailwind/react";
 import {useSelector} from 'react-redux';
 import { Link } from 'react-scroll';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage , faCircleInfo , faMap , faHome ,faArrowAltCircleLeft , faFaceSadCry  , faFaceSmile   } from '@fortawesome/free-solid-svg-icons';
+
+
 const LocationDetailsPage = () => {
 
   const data = useSelector((state) => state.auth);
@@ -28,6 +32,9 @@ const LocationDetailsPage = () => {
   const [avail , setAvail] = useState();
   const [contributor , setContributor] = useState('');
   const [isChecked, setIsChecked] = useState(false);
+  const [collegeCode, setcollegeCode] = useState('');
+  const [contributorName, setcontributorName] = useState('');
+  const [contributorContactNumber, setcontributorContactNumber] = useState('');
 
 
   const handleRemove = () => {
@@ -87,6 +94,9 @@ const LocationDetailsPage = () => {
         setUrls(response.data.urlsArr);
         setLat(response.data.foundLoc[0].lat);
         setLgn(response.data.foundLoc[0].lng);
+        setcollegeCode(response.data.foundLoc[0].collegeCode);
+        setcontributorName(response.data.foundLoc[0].contributorName);
+        setcontributorContactNumber(response.data.foundLoc[0].contributorContactNumber);
       })
       .catch( (error) => {
         // console.log("lat=>",lng)
@@ -115,39 +125,93 @@ const LocationDetailsPage = () => {
             <div className=' relative top-2  md:left-0      '>
                 <img className='h-[210px] w-[210px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
             </div>
-            <div className='    relative flex flex-row justify-between  md:gap-20  gap-2  '>
+            <div className='    relative flex flex-row justify-between  md:gap-20  gap-4  '>
               <Tooltip content="Material Tailwind">
-                <Link className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' activeClass="active" to="section1" spy={true} smooth={true} duration={500}>
-                  Location View
+                <Link className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500 ' activeClass="active" to="section1" spy={true} smooth={true} duration={500}>
+                   <h1 className='hidden md:block '  >Location View</h1>
+                   <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faImage} />     </h1>
+                   <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                            Preview
+                   </div>
                 </Link>
+                
               </Tooltip>
               <Link className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' activeClass="active" to="section2" spy={true} smooth={true} duration={500}>
-                Details
+                   <h1 className='hidden md:block '  >Details</h1>
+                   <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faCircleInfo } />     </h1>
+                   <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                            Details
+                   </div>
               </Link>
               <Link className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' activeClass="active" to="section3" spy={true} smooth={true} duration={500}>
-                Map View
+                   <h1 className='hidden md:block '  >Map View</h1>
+                   <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faMap } />     </h1>
+                    <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                            Map View
+                          </div>
               </Link>
-              <div className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' onClick={()=>{navigate("/home")}}> <button>Home</button></div>
+              
+              <div className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' >
+                  <button  onClick={()=>{ collegeCode && navigate(`/locations/${collegeCode}`)}}>
+                          <h1 className='hidden md:block '  >Locations</h1>
+                          <h1 className=' md:hidden '  >  <FontAwesomeIcon icon={faArrowAltCircleLeft} /> 
+                          <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                            prev page
+                          </div>
+                            </h1> 
+                  </button>
+              </div>              
+              <div className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' onClick={()=>{navigate("/home")}}> <button> 
+                   <h1 className='hidden md:block '  >Home</h1>
+                   <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faHome } />     </h1>
+                   <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                            Home
+                    </div>
+              </button>
+              </div>
               <div>
                 { data.accountType!="Student"  && currUser==contributor      ? (
                   <>
-                    <Tooltip content="  Is Available">
                       <div>
                         <label class="inline-flex items-center cursor-pointer"> 
-                          <button className='primary-btn' onClick={handleChange}>  {<span class="  font-medium   text-xl ">{avail ? (  <h1 className=' text-green-800'>{"Available"}</h1>) : ( <h1 className='  relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500'>{"Not Available"}</h1> )}</span>} </button>
+                          <button className='primary-btn' onClick={handleChange}>  {<span class="  font-medium   text-xl ">{avail ? (  <div className=' text-green-800'>
+
+                            <h1 className='hidden md:block '  > Available</h1>
+                            <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faFaceSmile } />     </h1>
+                             <div className=" text-sm  text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                             Available
+                             </div>
+                          </div>) : ( <div className='  relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500'>
+                              
+                              <h1 className='hidden md:block '  >Not Available</h1>
+                              <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faFaceSadCry } />     </h1>
+                              <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                                    Not Available
+                              </div>
+
+                          </div> )}</span>} </button>
                         </label>
                       </div>
-                    </Tooltip>
                   </>
                  ):(<div>
-                  {<span class="  font-medium   text-xl ">{avail ? (  <h1 className=' text-green-400 hover:text-green-500'>{"Available"}</h1>) : ( <h1 className=' relative text-md  text-red-300 h-8  text-center  rounded-md hover:text-red-400'>{"Not Available"}</h1> )}</span>} 
+                  {<span class="  font-medium   text-xl ">{avail ? (  <div className=' text-green-400 hover:text-green-500'>
+                    <h1 className='hidden md:block ' > Available</h1>
+                     <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faFaceSmile } />     </h1>
+                  </div>) : ( <div className=' relative text-md  text-red-300 h-8  text-center  rounded-md hover:text-red-400'>
+                     <h1 className='hidden md:block '  >Not Available</h1>
+                     <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faFaceSadCry } />     </h1>
+                      <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                            Not Available
+                    </div>
+                  </div> )}</span>} 
                 </div>)}
               </div>
             </div>
           </div>
         </>
       </div>  
-      <div className='relative     flex flex-row min-h-screen justify-center items-center bg-gray-100 ' id='section1'>
+
+      <div className='relative     flex flex-row min-h-screen justify-center items-center bg-gray-100  border border-yellow-400 ' id='section1'>
           <ImageCarousel>
             {
               slides.map((s)=>(
@@ -156,26 +220,70 @@ const LocationDetailsPage = () => {
             }
           </ImageCarousel>
       </div>
-      <div ref={myRef} id="section2" className='relative h-screen w-full top-3  '>
-        <div class=" bg-gray-200   border  rounded overflow-hidden shadow-lg  min-h-screen justify-center items-center  flex flex-row    ">
-          <div className='relative   bg-slate-300  md:w-1/3 right-2  flex items-center md:h-full hover:shadow-lg  sm:w-1/2  sm:h-screen     '>   
+
+      <div ref={myRef} id="section2" className='relative h-screen w-full  border  border-fuchsia-500 '>
+        <div className='hidden md:block'>
+        <div class="    bg-gray-200   border  rounded overflow-hidden shadow-lg  min-h-screen justify-center items-center  flex flex-row     ">
+          <div className='relative   bg-slate-300  md:w-1/3 right-2  flex justify-center items-center md:h-full shadow-lg shadow-slate-600   sm:w-1/2  sm:h-screen      '>   
             <ul className='relative       flex-col   gap-y-6      h-[500px]    flex  justify-center  items-start    ' >
-                <div> <li className='md:text-2xl sm:text-xl sm:ml-2'>House Owner Name : {houseOwnerName}</li></div>
-                <div><li  className='md:text-2xl sm:text-xl sm:ml-2'>Contact Number : {contactNumber}</li></div>
-                <div><li className='md:text-2xl sm:text-xl sm:ml-2'>Distance From College : {distance}</li></div>
-                <div><li className='md:text-2xl sm:text-xl sm:ml-2'>Expected Rent : {expectedRent}</li></div>
-                <div><li className='md:text-2xl sm:text-xl sm:ml-2'>Location Address : {locationAdress}</li></div>
+                <div className='md:text-2xl sm:text-xl sm:ml-2  '> House Owner Name :<span className='hover:underline decoration-solid'>{houseOwnerName} </span>   </div>
+                <div className='md:text-2xl sm:text-xl sm:ml-2  '>Contact Number : <span className='hover:underline decoration-solid'>{contactNumber} </span> </div>
+                <div className='md:text-2xl sm:text-xl sm:ml-2  '>Distance From College : <span className='hover:underline decoration-solid'>{contactNumber} </span>  </div>
+                <div className='md:text-2xl sm:text-xl sm:ml-2  '>Expected Rent : <span className='hover:underline decoration-solid'>{expectedRent} </span> </div>
+                <div className='md:text-2xl sm:text-xl sm:ml-2  '>Location Address : <span className='hover:underline decoration-solid'>{locationAdress} </span> </div>
+                <div className='md:text-2xl sm:text-xl sm:ml-2  '>Contributor Name : <span className='hover:underline decoration-solid'>{contributorName} </span> </div>
+                <div className='md:text-2xl sm:text-xl sm:ml-2  '>Contributor Contact Number : <span className='hover:underline decoration-solid'>{contributorContactNumber} </span> </div>
             </ul>
           </div>
-          <div className='relative   h-[900px]   bg-slate-400  w-1   '> </div>
-          <div className='relative  border      bg-slate-300 md:w-1/3   left-2  text-xl  flex items-center md:h-full hover:shadow-lg  sm:w-1/2    '>
-            <div className='relative   leading-loose    md:h-[500px] md:text-2xl flex items-center justify-center px-3 py-3  sm:h-screen sm:text-xl        '>
+          {/* <div className='relative   h-[900px]   bg-slate-400  w-1   '> </div> */}
+          <div className='relative  border      bg-slate-300 md:w-1/3   left-2  text-xl  flex items-center md:h-full shadow-lg shadow-slate-600  sm:w-1/2 h-screen     '>
+            <div className=' font-mono  relative   leading-loose    md:h-[500px] md:text-2xl flex items-center justify-center px-3 py-3  sm:h-screen sm:text-xl        '>
               {desc}   
             </div>
           </div>
         </div>
+        </div>
+
+        {/* //..................... */}
+
+
+
+        <div className=' block md:hidden min-h-screen  border border-green-400'>
+        
+       
+        {/* <div class="    bg-gray-200   border  rounded overflow-hidden shadow-lg  min-h-screen justify-center items-center  flex flex-col     "> */}
+        <div className=''>
+
+         <div className=' relative  gap-2 flex flex-col justify-center h-screen'>
+          <div className='relative   bg-  hover:shadow-lg  h-1/2 flex justify-center items-center       '>   
+
+            <div className='relative  flex flex-col gap-2      ' >
+                <div className='relative md:text-2xl sm:text-xl sm:ml-2'> House Owner Name :<span className='hover:underline decoration-solid'>{houseOwnerName} </span>  </div>
+                <div className='relative md:text-2xl sm:text-xl sm:ml-2'>Contact Number :  <span className='hover:underline decoration-solid'>{contactNumber} </span></div>
+                <div className=' relative md:text-2xl sm:text-xl sm:ml-2'>Distance From College : <span className='hover:underline decoration-solid'>{contactNumber} </span></div>
+                <div className='relative md:text-2xl sm:text-xl sm:ml-2'>Expected Rent : <span className='hover:underline decoration-solid'>{expectedRent} </span></div>
+                <div className='relative md:text-2xl sm:text-xl sm:ml-2'>Location Address : <span className='hover:underline decoration-solid'>{locationAdress} </span></div>
+                <div className='md:text-2xl sm:text-xl sm:ml-2  '>Contributor Name : <span className='hover:underline decoration-solid'>{contributorName} </span> </div>
+                <div className='md:text-2xl sm:text-xl sm:ml-2  '>Contributor Contact Number : <span className='hover:underline decoration-solid'>{contributorContactNumber} </span> </div>
+            </div>
+          </div>
+          
+          <div className='relative bg-orange-300 h-1/2 flex justify-center items-center     '>
+            <div className='relative  ml-1 mr-1          '>
+              {desc}   
+            </div>
+          </div>
+        {/* </div> */}
+        </div>
+
+        </div>
+
+        </div>
+
+
+
       </div>
-      <div className='relative h-screen w-full  bg-gray-200 top-32   ' id='section3'>
+      <div className='relative h-screen w-full border  border-gray-950 bg-gray-200    ' id='section3'>
         {/* <div className='relative    min-h-screen justify-center bottom-[-90px]  '> */}
         <Loc   props={pos}    />
         {/* </div> */}

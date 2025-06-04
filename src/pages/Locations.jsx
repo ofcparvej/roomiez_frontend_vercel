@@ -8,6 +8,10 @@ import {useSelector} from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import {  logOutUser } from "../store/slices/authSlice";
+// import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage , faCircleInfo , faMap , faHome ,faArrowAltCircleLeft , faLocationDot , faUniversity     } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const Locations = () => {
@@ -21,70 +25,108 @@ const Locations = () => {
     // const [vec , setVec] = useState([{}])
     const {collegeCode} = useParams();
 
+   
+
     const params = {
       collegeCode:collegeCode
     }
+
 
     const [locations , setLocations] = useState([])
 
     useEffect(() => {
       axios.get("https://roomiez-backend-deployment.onrender.com/api/v1/loc/alldetails" , {params})
       .then((res)=>{
-        // console.log("RES-------------------------------------->" , res.data);
+        console.log("RES-------------------------------------->" , res.data);
         setLocations(res.data.Locations);
       })
     } , [])
 
-  const filteredLocations = locations.filter((res) => res.locationAddress.trim().replace(/\s+/g, '').toLowerCase().includes(searchText.toLowerCase())) 
+  const filteredLocations = locations.filter((res) => res.locationAddress.trim().replace(/\s+/g, '').toLowerCase().includes(searchText.toLowerCase())) ;
+
+   const {id} = useParams();
+    console.log(id);
 
   return (
     <>
     <div  className=''>
-      <div className = ' z-10 sticky top-0 left-0  border h-[135px]   md:h-[90px] bg-slate-400 flex flex-row  md:space-x-[150px] justify-center  w-screen ' >
+      <div className = ' z-10 sticky top-0 left-0  border h-[55px]   md:h-[90px] bg-slate-400 flex flex-row  md:space-x-[150px] justify-center  w-screen item ' >
         <div className='' >
-            <div className='     top-0   flex items-center shadow-lg h-[135px] md:h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between w-screen  ' >   
-              <div className='    top-0   flex items-center  h-[135px]   md:h-[105px] bg-slate-200  z-10 sticky   border  flex-row  justify-between '>
+            <div className='     top-0    flex items-center shadow-lg h-[90px] md:h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between w-screen  ' >   
+              <div className=' hidden md:block   relative top-2    '>
                     <img className='md:h-[210px] md:w-[210px] h-[200px] w-[200px]   ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
-              <div className='  mr-9    relative flex flex-row justify-between md:px-[100px] md:gap-20  gap-6 '>
-              { (Type == "Admin" )? (  <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500' onClick={()=>{navigate("/addcollege")}}>Add New College</button></div> ):(<div></div>)  }
-              { (Type != "Student" )? (  <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500' onClick={()=>{navigate("/addlocations")}}>Add New Location</button></div> ):(<div></div>)  }
-              <div className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500   ' onClick={()=>{navigate("/home")}}> <button >Home</button></div>
-              <div className='relative'> <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input> </div>
-              <div className='relative' > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' onClick={ ()=>{   navigate("/"); dispatch(logOutUser()) ;console.log("clicked");  }  }>LogOut</button></div>
+              <div className='  mr-2    relative flex flex-row justify-between md:px-[100px] md:gap-20  gap-9  '>
+              <div className='relative ml-5'> <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input> </div>
+              <div>{ (Type == "Admin" )? (  <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500' onClick={()=>{navigate(`/addcollege`)}}>
+
+                                   <h1 className='hidden md:block '  > Add New College </h1>
+                                   <h1 className=' md:hidden '  >  <FontAwesomeIcon icon={faUniversity } />   </h1>
+                
+                </button></div> ):(<div></div>)  }</div>
+              { (Type != "Student" )? (  <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500' onClick={()=>{navigate(`/addlocations/${collegeCode}`)}}>
+
+                                   <h1 className='hidden md:block '  >Add New Location</h1>
+                                   <h1 className=' md:hidden '  >  <FontAwesomeIcon icon={faLocationDot } />   </h1>
+                
+                </button></div> ):(<div></div>)  }
+             
+              
+              {/* <div className='relative'> <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input> </div> */}
+            
+              {<div    onClick={()=>{navigate("/home")}}> <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500' >
+
+                 <h1 className='hidden md:block '  >Home</h1>
+                 <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faHome } />     </h1>
+                
+                </button></div> }
+              {/* <div className='relative'> <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input> </div> */}
+              <div  > <button  className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' onClick={ ()=>{   navigate("/"); dispatch(logOutUser()) ;console.log("clicked");  }  }>LogOut</button></div>
               </div>
             </div>
         </div>
       </div>
-      <main className='relative top-[100px]'>
-        <div >
-          <div  className='   '>
-            {
+
+
+
+       <div className='relative top-[100px]'>
+
+
+              <div className='flex justify-center items-center  '>
+                 {
               filteredLocations.length > 0 ? (
-                    <div>
-                    <ul className='grid grid-cols-5   gap-4 p-4' >
-                          {filteredLocations.map(loc => (
-                            <div key={uuidv4()}>
-                                <LocationsComponent ids ={loc}/>
-                            </div>
-                          ))}  
-                        </ul>  
-                    </div>
-              ):(
-                <div>
-                  <ul className='grid grid-cols-5   gap-4 p-4' >
-                        {locations.map(location => (
-                          <div key={uuidv4()}>  
+                  
+                     <div className=' md:grid md:grid-cols-4 gap-4  grid grid-col-1  ' >
+                        {filteredLocations.map(location => (
+                          <div className=' relative  ' key={uuidv4()}>  
                               <LocationsComponent ids ={location}/>
                           </div>
                         ))}  
-                      </ul>  
-                </div>
+                      </div> 
+                        
+                        
+                  
+              ):(
+              
+                  <div className=' md:grid md:grid-cols-4 gap-4  grid grid-col-1  ' >
+                        {locations.map(location => (
+                          <div className=' relative  ' key={uuidv4()}>  
+                              <LocationsComponent ids ={location}/>
+                          </div>
+                        ))}  
+                      </div>   
+              
               )
             }
-          </div>
-        </div>
-      </main>
+
+             </div> 
+
+
+       </div>
+
+
+
+
     </div>
     </>
   )

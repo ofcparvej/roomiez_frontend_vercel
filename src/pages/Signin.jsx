@@ -50,16 +50,16 @@ const Signin = () => {
               </div>
           </div>
           <div className='min-h-screen'>
-            <div className='relative flex flex-col   gap-[70px] ' >
+            <div className='relative flex flex-col md:gap-[70px]  gap-[-10px] ' >
                   <div className='relative top-[70px] flex justify-center items-center  '>
                       <div className='   sm:text-center text-3xl   relative  bg-gray-200 h-[200px] md:text-7xl text-center md:text-center'>
                           Welcome! We're excited to have you join our community.
                       </div>
                   </div>
-                  <div>
-                   <>
-                     <div class=" md:flex md:flex-row  md:justify-center md:items-center md:space-x-2  bg-gray-200   flex items-center justify-center  " >
-                          <div className=' md:flex md:border md:h-[300px] md:w-2/3 md:items-center md:justify-center bg-white shadow-md  w-4/5 flex justify-center items-center h-[500px] '>
+                  {/* <div> */}
+                   {/* <> */}
+                     <div class="relative md:flex md:flex-row  md:justify-center md:items-center md:space-x-2   bg-gray-200   flex items-center justify-center  h-[50px] top-20 " >
+                          <div className=' relative md:flex md:border md:h-[300px] md:w-2/3 md:items-center md:justify-center bg-white shadow-md  w-[450px] flex justify-center items-center h-[300px] md:top-0 top-[10px]  '>
                             <div className='flex flex-col  w-[400px]'>
                               <input type="text" value={email}  className=" h-7 px-3 my-3 outline-none  bg-gray-100  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700   text-center font-light" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
                               <input type="password" value={password} className=" h-7 px-3 my-3 outline-none  bg-gray-100  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700   text-center font-light" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}/> 
@@ -68,8 +68,8 @@ const Signin = () => {
                             </div>
                           </div>
                      </div>
-                    </>
-                  </div>
+                    {/* </> */}
+                  {/* </div> */}
               </div>
           </div>
         </div>

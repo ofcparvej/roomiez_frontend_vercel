@@ -19,6 +19,7 @@ import {useSelector} from 'react-redux';
 import Student from './pages/Student'
 import Contributor from './pages/Contributor'
 import Loc from './components/Loc'
+import Shimmer from './pages/Shimmer'
 
 
 
@@ -36,6 +37,7 @@ function App() {
     <div>
         {/* <BrowserRouter> */}
          <Routes>
+            <Route path="/loading"  element={  <Shimmer/>    }  />  
             <Route path="/admin"  element={  <Homepage/>    }  />  
             <Route path="/admin/signin"  element={  <Admin/>    }  />  
             <Route path="/"  element={  <Auth/>    }  />  
@@ -45,8 +47,8 @@ function App() {
             <Route path="/locations/:collegeCode" element={<Locations/>}  />
             <Route path="/addcollege" element={<Addcollege/>}  />
             <Route path="/upload" element={<ImageUpload/>}  />
-            <Route path="/addlocations" element={<Addlocations/>}  />
-            <Route path="/addlocationdetails" element={<Addlocationdetails/>}  />
+            <Route path="/addlocations/:id" element={<Addlocations/>}  />
+            <Route path="/addlocationdetails/:id" element={<Addlocationdetails/>}  />
             <Route path="/" element={<Auth/>}  />
             <Route path="/locationdetails/:currLocationid" element={<LocationDetailsPage/>}  />
             <Route path="/uploadlogo/:collegeCode" element={<LogoUpload/>}  />

@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {useSelector} from 'react-redux';
 import { useDispatch } from "react-redux";
 import { logOutUser } from "../store/slices/authSlice";
+import Shimmer from './Shimmer';
 
 const Contributor = () => {
 
@@ -50,7 +51,19 @@ const Contributor = () => {
   });
   
 
-  const filteredClgs = colleges.filter((res) => res.collegeName==searchText) 
+  const filteredClgs = colleges.filter((res) => res.collegeName==searchText) ;
+
+  const [loading, setLoading] = useState(true);
+  
+   useEffect(() => {
+      // Simulate loading for 2 seconds
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+  
+      // Cleanup timer on unmount
+      return () => clearTimeout(timer);
+    }, []);
 
 
   return (
@@ -63,12 +76,12 @@ const Contributor = () => {
               </div>
               <div className='relative flex flex-row justify-between px-[100px] gap-32 sm:gap-20   '>
                     <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input>
-                    <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' onClick={ ()=>{   navigate("/"); dispatch(logOutUser()) ;console.log("clicked");  }  }>Reset</button></div>
+                    <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' onClick={ ()=>{   navigate("/"); dispatch(logOutUser()) ;console.log("clicked");  }  }>LogOut</button></div>
               </div>
           </div>
         </>
       </div>
-      <main className="  flex flex-row min-h-screen justify-center items-center     ">
+      {/* <main className="  flex flex-row min-h-screen justify-center items-center     ">
         <div className='  '>
             {
               filteredClgs.length > 0 ? (
@@ -105,7 +118,57 @@ const Contributor = () => {
               )
             }
         </div>
-      </main>
+      </main> */}
+
+
+
+       {
+        loading  ? (<>
+      <Shimmer/>
+        </>) :
+        (
+        <> 
+        <main className=" flex flex-row min-h-screen justify-center items-center    ">
+        <div className='  '>
+          {
+            filteredClgs.length > 0 ? (
+              <div>
+                {filteredClgs.map((item) => (
+                  <div  key={uuidv4()} className='relative top-3   bg-black bg-opacity-10  ' style={{ margin:"60px" }}>
+                    <Dummy data ={ item }   />
+                  </div>
+                ))}
+              </div>
+            ):( <div className=' relative  top-10      bg-black bg-opacity-10 '>
+              <div  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+             
+              {colleges.map((item) => (
+               
+                <div className='relative top-3  rounded-md   bg-slate-300 shadow-md shadow-black  p-4   ' style={{ margin:"60px" }}>
+                  <Dummy data ={ item }   />
+                </div>
+              ))}
+              
+            </div>
+            </div>
+            )
+          }
+        </div>
+      </main>    
+        </>
+        ) 
+      }
+
+
+
+
+
+
+
+
+
+
+
 </div>
 )
   
