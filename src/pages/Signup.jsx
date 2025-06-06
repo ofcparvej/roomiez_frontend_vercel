@@ -84,24 +84,24 @@ const Signup = () => {
 
   return (
     <>
-      <div className='max-h-screen bg-gray-200 overflow-y-hidden     '>
-        <div className='   top-0   flex items-center shadow-lg h-[70px]   md:h-[135px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
-          <div className=' relative top-2  sm:left-12    md:left-[100px] '>
-                <img className='md:h-[300px] md:w-[300px] h-[200px] w-[200px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
+      <div className='  bg-gray-200 overflow-y-hidden    '>
+        <div className='   top-0   flex items-center shadow-lg h-[70px]   md:h-[105px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
+          <div className=' relative top-2  sm:left-12    md:left-[100px]'>
+                <img className='md:h-[260px] md:w-[260px] h-[200px] w-[200px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
           </div>
           <div className='relative flex flex-row justify-between px-[100px] md:gap-32  gap-10 '>
-              <div className='relative md:text-2xl  '> <button>Docs</button></div>
-              <div className='relative md:text-2xl   '> <button>About Us</button></div>
+              {/* <div className='relative md:text-2xl  '> <button>Docs</button></div> */}
+              {/* <div className='relative md:text-2xl   '> <button>About Us</button></div> */}
           </div>
         </div>
-        <div className='min-h-screen'>
-          <div className='relative flex flex-col  top-6  md:gap-7 ' >
-            <div className='relative top-4 md:top-[70px] flex justify-center items-center  '>
-              <div className='    relative  bg-gray-200 h-[200px] text-2xl md:text-6xl text-center md:text-center  '>
+        <div className=''>
+          <div className='relative flex flex-col    ' >
+            <div className='relative top-[20px] flex justify-center items-center  '>
+              <div className='    sm:text-center text-xl   relative  bg-gray-200  md:text-4xl text-center md:text-center  '>
                   Welcome! We're excited to have you join our community.
               </div>
             </div>
-            <div className='relative flex justify-center items-center  md:top-0 top-[-120px]    '>
+            <div className='relative flex justify-center items-center    '>
               <div class="  relative md:flex flex-col  gap-10  w-screen    md:flex-row  md:justify-center md:items-center md:space-x-2  bg-slate-200  md:bottom-[30px]  flex justify-center items-center   " >
                 <div className='  relative flex border  w-5/6  md:h-[550px]  md:w-2/3 items-center justify-center bg-white shadow-md '>
                   <div className='flex flex-col'>
