@@ -12,7 +12,7 @@ import {useSelector} from 'react-redux';
 import { Link } from 'react-scroll';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImage , faCircleInfo , faMap , faHome ,faArrowAltCircleLeft , faFaceSadCry  , faFaceSmile   } from '@fortawesome/free-solid-svg-icons';
+import { faImage , faCircleInfo , faMap , faHome ,faArrowAltCircleLeft , faFaceSadCry  , faFaceSmile  ,faMapLocation  } from '@fortawesome/free-solid-svg-icons';
 
 
 const LocationDetailsPage = () => {
@@ -123,7 +123,7 @@ const LocationDetailsPage = () => {
         <>
           <div className='   top-0   flex items-center shadow-lg w-full   h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
             <div className=' relative top-2  md:left-0      '>
-                <img className='h-[210px] w-[210px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
+                <img className='h-[210px] w-[210px] hidden md:block  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
             </div>
             <div className='    relative flex flex-row justify-between  md:gap-20  gap-4  '>
               <Tooltip content="Material Tailwind">
@@ -145,7 +145,7 @@ const LocationDetailsPage = () => {
               </Link>
               <Link className='relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' activeClass="active" to="section3" spy={true} smooth={true} duration={500}>
                    <h1 className='hidden md:block '  >Map View</h1>
-                   <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faMap } />     </h1>
+                   <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faMapLocation } />     </h1>
                     <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
                             Map View
                           </div>
@@ -197,7 +197,7 @@ const LocationDetailsPage = () => {
                   {<span class="  font-medium   text-xl ">{avail ? (  <div className=' text-green-400 hover:text-green-500'>
                     <h1 className='hidden md:block ' > Available</h1>
                      <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faFaceSmile } />     </h1>
-                  </div>) : ( <div className=' relative text-md  text-red-300 h-8  text-center  rounded-md hover:text-red-400'>
+                  </div>) : ( <div className=' relative text-md   h-8  text-center text-slate-600  rounded-md hover:text-red-400'>
                      <h1 className='hidden md:block '  >Not Available</h1>
                      <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faFaceSadCry } />     </h1>
                       <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">

@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import {  logOutUser } from "../store/slices/authSlice";
 // import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImage , faCircleInfo , faMap , faHome ,faArrowAltCircleLeft , faLocationDot , faUniversity     } from '@fortawesome/free-solid-svg-icons';
+import { faImage , faCircleInfo , faMap , faHome ,faArrowAltCircleLeft , faLocationDot , faUniversity  ,faRightFromBracket    } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -49,15 +49,15 @@ const Locations = () => {
 
   return (
     <>
-    <div  className=''>
+    <div  className='w-screen '>
       <div className = ' z-10 sticky top-0 left-0  border h-[55px]   md:h-[90px] bg-slate-400 flex flex-row  md:space-x-[150px] justify-center  w-screen item ' >
         <div className='' >
             <div className='     top-0    flex items-center shadow-lg h-[90px] md:h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between w-screen  ' >   
               <div className=' hidden md:block   relative top-2    '>
                     <img className='md:h-[210px] md:w-[210px] h-[200px] w-[200px]   ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
-              <div className='  mr-2    relative flex flex-row justify-between md:px-[100px] md:gap-20  gap-9  '>
-              <div className='relative ml-5'> <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input> </div>
+              <div className='  mr-2    relative flex flex-row justify-between md:px-[100px] md:gap-20  gap-8  '>
+              <div className='relative ml-1  w-[150px] md:'> <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input> </div>
               <div>{ (Type == "Admin" )? (  <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500' onClick={()=>{navigate(`/addcollege`)}}>
 
                                    <h1 className='hidden md:block '  > Add New College </h1>
@@ -81,7 +81,15 @@ const Locations = () => {
                 
                 </button></div> }
               {/* <div className='relative'> <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input> </div> */}
-              <div  > <button  className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' onClick={ ()=>{   navigate("/"); dispatch(logOutUser()) ;console.log("clicked");  }  }>LogOut</button></div>
+                            {<div    onClick={ ()=>{   navigate("/"); dispatch(logOutUser()) ;console.log("clicked");  }  }> <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500' >
+
+                 <h1 className='hidden md:block '  >LogOut</h1>
+                                                           <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faRightFromBracket } />     </h1>
+                                                           {/* <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                                                                   LogOut
+                                                            </div> */}
+                
+                </button></div> }
               </div>
             </div>
         </div>

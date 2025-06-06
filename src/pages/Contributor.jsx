@@ -8,6 +8,8 @@ import {useSelector} from 'react-redux';
 import { useDispatch } from "react-redux";
 import { logOutUser } from "../store/slices/authSlice";
 import Shimmer from './Shimmer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage , faCircleInfo , faMap , faHome ,faArrowAltCircleLeft , faFaceSadCry  , faFaceSmile  , faRightFromBracket  } from '@fortawesome/free-solid-svg-icons';
 
 const Contributor = () => {
 
@@ -67,16 +69,25 @@ const Contributor = () => {
 
 
   return (
-    <div className=' bg-gray-200  '>
-      <div className = ' z-10 sticky top-0 left-0  border  h-[55px]  flex flex-row space-x-[150px] justify-center ' >
+    <div className=''>
+    <div className=' bg-gray-200  w-screen '>
+      <div className = ' z-10 sticky top-0 left-0  border   h-[55px]  flex flex-row space-x-[150px] justify-center ' >
         <>
           <div className='   top-0   flex items-center shadow-lg w-full   h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
-              <div className=' relative top-2    md:left-[100px] '>
-                  <img className='h-[210px] w-[210px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
+              <div className=' hidden md:block relative top-2    left-[-20px] '>
+                  <img className='md:h-[210px] md:w-[210px] h-[150px] w-[150px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
-              <div className='relative flex flex-row justify-between px-[100px] gap-32 sm:gap-20   '>
+              <div className='relative md:flex md:justify-between md:px-[100px]  md:gap-32  gap-2 flex ml-20    '>
                     <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input>
-                    <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' onClick={ ()=>{   navigate("/"); dispatch(logOutUser()) ;console.log("clicked");  }  }>LogOut</button></div>
+                    <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500   ' onClick={ ()=>{   navigate("/"); dispatch(logOutUser()) ;console.log("clicked");  }  }>
+                       
+                                          <h1 className='hidden md:block '  >LogOut</h1>
+                                          <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faRightFromBracket } />     </h1>
+                                          <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                                                  LogOut
+                                           </div>
+
+                      </button></div>
               </div>
           </div>
         </>
@@ -169,6 +180,7 @@ const Contributor = () => {
 
 
 
+</div>
 </div>
 )
   

@@ -83,31 +83,34 @@ const Signup = () => {
   //...................................................................
 
   return (
-    <>
-      <div className='  bg-gray-200 overflow-y-hidden    '>
-        <div className='   top-0   flex items-center shadow-lg h-[70px]   md:h-[105px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
-          <div className=' relative top-2  sm:left-12    md:left-[100px]'>
-                <img className='md:h-[260px] md:w-[260px] h-[200px] w-[200px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
+    // <>
+      <div className='  bg-gray-200 w-screen   h-screen  '>
+        <div className='   top-0   flex items-center shadow-lg h-[70px]   md:h-[100px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
+          <div className=' relative top-2  left-[-30px]   '>
+                <img className='md:h-[260px] md:w-[260px] h-[150px] w-[150px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
           </div>
-          <div className='relative flex flex-row justify-between px-[100px] md:gap-32  gap-10 '>
+          {/* <div className='relative flex flex-row justify-between px-[100px] md:gap-32  gap-10 '> */}
               {/* <div className='relative md:text-2xl  '> <button>Docs</button></div> */}
               {/* <div className='relative md:text-2xl   '> <button>About Us</button></div> */}
-          </div>
+          {/* </div> */}
         </div>
-        <div className=''>
-          <div className='relative flex flex-col    ' >
-            <div className='relative top-[20px] flex justify-center items-center  '>
-              <div className='    sm:text-center text-xl   relative  bg-gray-200  md:text-4xl text-center md:text-center  '>
+        <div className='   '>
+          <div className='relative flex flex-col     ' >
+            <div className='relative  flex justify-center items-center  '>
+              <div className='    sm:text-center text-l mt-4  relative  bg-gray-200  md:text-4xl text-center md:text-center  '>
                   Welcome! We're excited to have you join our community.
               </div>
             </div>
-            <div className='relative flex justify-center items-center    '>
-              <div class="  relative md:flex flex-col  gap-10  w-screen    md:flex-row  md:justify-center md:items-center md:space-x-2  bg-slate-200  md:bottom-[30px]  flex justify-center items-center   " >
-                <div className='  relative flex border  w-5/6  md:h-[550px]  md:w-2/3 items-center justify-center bg-white shadow-md '>
-                  <div className='flex flex-col'>
-                    <input type="text" value={firstName} className=" h-7 px-3 my-3 outline-none  bg-gray-100  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700   text-center font-light" placeholder="First Name" onChange={(e)=>{setfirstName(e.target.value)}}/>
+            <div className='relative flex justify-center items-center md:mt-15 mt-3    '>
+              <div class="  relative md:flex flex-col  gap-10  w-screen    md:flex-row  md:justify-center md:items-center md:space-x-2  bg-slate-200   flex justify-center items-center   " >
+                <div className='  relative flex border  w-5/6  md:h-[490px]  md:w-2/3 items-center justify-center bg-white shadow-md '>
+                  <div className='relative flex flex-col w-5/6   justify-center items-center mt-1 '>
+                    <input type="text" value={firstName} className="   h-7 px-3 my-3 outline-none  bg-gray-100  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700   text-center font-light" placeholder="First Name" onChange={(e)=>{setfirstName(e.target.value)}}/>
                     <input type="text" value={lastName} className=" h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 text-center font-light" placeholder="Last Name" onChange={(e)=>{setlastName(e.target.value)}}/>
-                    <input type="text" value={email} className=" h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 text-center font-light" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
+                    <div className='relative  flex flex-col md:flex-row md:gap-6  md:left-[52px] '>
+                           <input type="text" value={email} className="relative   h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 text-center font-light" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
+                           <button className='relative    h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter  border border-gray-200 hover:border-gray-700 text-center font-light'  onClick={handleSubmitOtp } >Get Otp</button>
+                    </div>
                     <input type="password" value={password} className=" h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 text-center font-light" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}}/>
                     <input type="text" value={accountType} className=" h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 text-center  font-light" placeholder="Account Type" onChange={(e)=>{setaccountType(e.target.value)}}/>
                     <select className='form-select' onChange={handleSelect}>
@@ -123,23 +126,23 @@ const Signup = () => {
                     <input type="text" value={contactNumber} className=" h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 text-center font-light" placeholder="Contact Number" onChange={(e)=>{setcontactNumber(e.target.value)}}/>
                     <input type="password" value={confirmedPassword} className=" h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 font-light" placeholder="Confirmed Password" onChange={(e)=>{setconfirmedPassword(e.target.value)}}/>
                     <input type="text" value={otp} className=" h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 text-center font-light" placeholder="Otp" onChange={(e)=>{setOtp(e.target.value)}}/> 
-                    <button className='relative border bg-slate-400 border-gray-200 hover:border-gray-700  text-white font-light'  onClick={handleSubmit } >Sign Up</button>
+                    <button className='relative  mb-4    h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter  border border-gray-200 hover:border-gray-700 text-center font-light'  onClick={handleSubmit } >Sign Up</button>
                     <ToastContainer autoClose={10000} />
                   </div>
                 </div>
-                <div className=' relative flex border w-5/6 md:h-80  md:w-2/3   items-center justify-center bg-white shadow-md'>
+                {/* <div className=' relative flex border w-5/6 md:h-80  md:w-2/3   items-center justify-center bg-white shadow-md'>
                     <div className='flex flex-col'>
                       <input type="text" value={email} className=" h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 text-center font-light" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
                       <button className='relative border bg-slate-400 border-gray-200 hover:border-gray-700  text-white font-light '  onClick={handleSubmitOtp } >Get Otp</button>
                       <ToastContainer autoClose={10000} />
                     </div>
-                </div>
+                </div> */}
               </div>   
             </div>
           </div>
         </div>
       </div>
-    </>
+    // </>
   )
 }
 
