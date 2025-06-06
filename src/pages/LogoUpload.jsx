@@ -48,7 +48,7 @@ const LogoUpload = () => {
     <div>
         <div className='relative    flex flex-row min-h-screen justify-center items-center  border bg-slate-200   '>
             <div className='relative   border  flex  flex-row   gap-x-3 space-x-5  h-[700px] w-full    '>
-                <div className='relative bg-gray-400  w-1/2 sm:w-screen    '>
+                <div className='relative bg-gray-400   sm:w-screen w-screen   '>
                     <form className=' relative top-40 flex flex-col justify-center content-center    ' onSubmit={e => handleSubmit(e) }>
                         <div className='relative flex flex-col gap-y-6  '>
                             <div className='relative'>

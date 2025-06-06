@@ -255,7 +255,7 @@ const LocationDetailsPage = () => {
         <div className=''>
 
          <div className=' relative  gap-2 flex flex-col justify-center h-screen'>
-          <div className='relative   bg-  hover:shadow-lg  h-1/2 flex justify-center items-center       '>   
+          <div className='relative   h-1/2 flex justify-center items-center shadow-lg shadow-slate-600      '>   
 
             <div className='relative  flex flex-col gap-2      ' >
                 <div className='relative md:text-2xl sm:text-xl sm:ml-2'> House Owner Name :<span className='hover:underline decoration-solid'>{houseOwnerName} </span>  </div>
@@ -268,8 +268,8 @@ const LocationDetailsPage = () => {
             </div>
           </div>
           
-          <div className='relative bg-orange-300 h-1/2 flex justify-center items-center     '>
-            <div className='relative  ml-1 mr-1          '>
+          <div className='relative  h-1/2 flex justify-center items-center shadow-lg shadow-slate-600      '>
+            <div className='relative  ml-1 mr-1         '>
               {desc}   
             </div>
           </div>
@@ -283,15 +283,35 @@ const LocationDetailsPage = () => {
 
 
       </div>
-      <div className='relative h-screen w-full border  border-gray-950 bg-gray-200    ' id='section3'>
+
+      <div className='relative h-screen w-full border  border-gray-950 bg-gray-200  top-3   ' id='section3'>
         {/* <div className='relative    min-h-screen justify-center bottom-[-90px]  '> */}
-        <Loc   props={pos}    />
+        <div className='flex flex-col '>
+        <div className='relative'>  <Loc   props={pos}    />   </div>
+        <div className='relative'>
+
+              { data.accountType!="Student"  && currUser==contributor      ? (
+                <>
+                <Tooltip content=" Do You Want To Remove The Location  ">
+                  <div class="relative flex justify-center items-center  ">
+                      <button onClick={handleRemove} class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                          Remove
+                      </button>
+                  </div>
+                </Tooltip>
+                </>
+                ):(<div ></div>)
+              }
+
+        </div>
+        </div>
+        {/* <Loc   props={pos}    /> */}
         {/* </div> */}
       </div>
-      { data.accountType!="Student"  && currUser==contributor      ? (
+      {/* { data.accountType!="Student"  && currUser==contributor      ? (
         <>
         <Tooltip content=" Do You Want To Remove The Location  ">
-          <div class="relative flex justify-center items-center  bottom-7">
+          <div class="relative flex justify-center items-center  bottom-7 ">
               <button onClick={handleRemove} class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                   Remove
               </button>
@@ -299,7 +319,7 @@ const LocationDetailsPage = () => {
         </Tooltip>
         </>
         ):(<div ></div>)
-      }
+      } */}
      </div>
     </>
   )
