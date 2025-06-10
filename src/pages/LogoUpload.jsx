@@ -46,11 +46,11 @@ const LogoUpload = () => {
 
   return (
     <div>
-        <div className='relative    flex flex-row min-h-screen justify-center items-center  border bg-slate-200   '>
-            <div className='relative   border  flex  flex-row   gap-x-3 space-x-5  h-[700px] w-full    '>
-                <div className='relative bg-gray-400   sm:w-screen w-screen   '>
+        <div className='relative    flex flex-row h-screen justify-center items-center  border bg-gray-200   '>
+            <div className='relative   border  flex  flex-row   gap-x-3 space-x-5  h-screen w-full    '>
+                <div className='relative bg-gray-400   sm:w-screen w-screen  h-screen '>
                     <form className=' relative top-40 flex flex-col justify-center content-center    ' onSubmit={e => handleSubmit(e) }>
-                        <div className='relative flex flex-col gap-y-6  '>
+                        <div className='relative flex flex-col gap-y-6  m-3  '>
                             <div className='relative'>
                                 <label  for="fileInput"
                                     className="bg-white text-gray-500 font-semibold text-base rounded max-w-md h-52 flex flex-col items-center justify-center cursor-pointer border-2  border-dashed mx-auto font-[sans-serif] border-red-400">

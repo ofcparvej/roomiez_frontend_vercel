@@ -15,8 +15,8 @@ const Addlocationdetails = () => {
 
   return (
     <div >
-      <div className='flex flex-col bg-gray-400 '>
-        <div className='bg-gray-400'>
+      <div className='flex flex-col bg-gray-400  '>
+        <div className='bg-gray-400 '>
        
         <div className=' relative  bg-gray-400 '>
             <ImageUpload props={id}  />

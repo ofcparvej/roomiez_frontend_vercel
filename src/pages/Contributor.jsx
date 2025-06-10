@@ -80,13 +80,11 @@ const Contributor = () => {
               <div className='relative md:flex md:justify-between md:px-[100px]  md:gap-32  gap-2 flex ml-20    '>
                     <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input>
                     <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500   ' onClick={ ()=>{   navigate("/"); dispatch(logOutUser()) ;console.log("clicked");  }  }>
-                       
                                           <h1 className='hidden md:block '  >LogOut</h1>
                                           <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faRightFromBracket } />     </h1>
                                           <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
                                                   LogOut
-                                           </div>
-
+                                          </div>
                       </button></div>
               </div>
           </div>

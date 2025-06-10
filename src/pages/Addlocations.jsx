@@ -99,7 +99,7 @@ const Addlocations = () => {
 
    
   return (
-  <div className='  h-screen w-full '>
+  <div className='  h-screen w-full  '>
     <div  className=' absolute h-screen w-full   hidden md:block '>
       <div className='bg-slate-400'>
       <div className='relative    flex flex-col min-h-screen justify-center items-center   border bg-slate-200   '>
@@ -123,7 +123,7 @@ const Addlocations = () => {
               <div></div>
             </form> 
           </div>
-          <div className='relative bg-gray-400 w-1/2  right-2  '>
+          <div className='relative bg-gray-400  w-1/2   right-2  '>
             < form className='relative flex flex-col top-1/4  h-1/2 justify-center items-center   gap-2  '>
               <div >
                 <Textarea class="relative  text-2xl " rows={3}  size="md"  label="Describe a litle about location" style={{ width: '700px', height: '300px' }}   onChange={(e)=>{setdescription(e.target.value)}} />
@@ -226,7 +226,7 @@ const Addlocations = () => {
           <div className='relative   '>
             < form className='relative flex flex-col top-1/4  h-1/2 justify-center items-center  '>
               <div >
-                <Textarea class="relative  text-2xl " rows={3}  size="md"   style={{ width: '450px', height: '200px' , border:"solid black" }}   onChange={(e)=>{setdescription(e.target.value)}} />
+                <Textarea class="relative  text-2xl " rows={3}  size="md"   style={{ width: '350px', height: '200px' , border:"solid black" }}   onChange={(e)=>{setdescription(e.target.value)}} />
               </div>
               <div>Describe about location</div>
               

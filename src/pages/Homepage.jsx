@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {useSelector} from 'react-redux';
 import Shimmer from './Shimmer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImage , faCircleInfo , faMap , faHome ,faArrowAltCircleLeft , faLocationDot , faUniversity     } from '@fortawesome/free-solid-svg-icons';
+import { faImage , faCircleInfo , faMap , faHome ,faArrowAltCircleLeft , faLocationDot , faUniversity  , faRightFromBracket   } from '@fortawesome/free-solid-svg-icons';
 
 
 const Homepage = () => {
@@ -64,13 +64,13 @@ const Homepage = () => {
 
   return (
     <div className='   '>
-        <div className = ' z-10 sticky top-0 left-0  border  h-[55px] bg-slate-400 flex flex-row space-x-[150px] justify-center sm:space-x-[100px]  ' >
+        <div className = ' z-10 sticky top-0 left-0  border  h-[55px] bg-slate-400 flex flex-row    md:space-x-[150px] justify-center    ' >
           <>
-            <div className='   top-0   flex items-center shadow-lg w-screen   h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >   
-              <div className=' relative top-2  sm:left-[50px]  hidden sm:block   '>
-                  <img className='h-[200px] w-[200px]   ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
+            <div className='   top-0   flex items-center shadow-lg w-screen  h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between  ' >   
+              <div className=' relative top-2  sm:left-[50px] hidden md:block   '>
+                  <img className='md:h-[200px] md:w-[200px]  w-[150px] h-[150px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
-              <div className='relative flex flex-row justify-between px-[100px] gap-10 items-center  '>
+              <div className='relative flex flex-row justify-between md:px-[100px] md:gap-10 items-center  gap-10  '>
                 <div  className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500    ' > <button onClick={()=>{navigate("/addcollege")}}>
                          
                                                    <h1 className='hidden md:block '  > Add New College </h1>
@@ -82,16 +82,29 @@ const Homepage = () => {
                   
                   </button></div>
                 
-                <div   className='rrelative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' > <button onClick={()=>{navigate("/addlocations")}}>
+                {/* <div   className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' > <button onClick={()=>{navigate("/addlocations")}}>
                       <h1 className='hidden md:block '  >Add New Location</h1>
                                                 <h1 className=' md:hidden '  >  <FontAwesomeIcon icon={faLocationDot } />   </h1>
                                                  <div className="  text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
                                                         Add New College
                                                   </div>
-                  </button></div>
-                <div  className='relative   '>
-                  <input className='relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input>
+                  </button></div> */}
+                
+                <div  className='relative    '>
+                  <input className='relative h-8  text-center hover:shadow-md rounded-md  w-[60px] md:w-[150px] ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input>
                 </div>
+
+
+
+                  <div   className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ' > <button onClick={()=>{navigate("/")}}>
+                      <h1 className='hidden md:block '  >LogOut</h1>
+                                                <h1 className=' md:hidden '  >  <FontAwesomeIcon icon={faRightFromBracket } />   </h1>
+                                                <div className="  text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                                                        LogOut
+                                                </div>
+                  </button></div>
+
+                  
               </div>
             </div>
             </>
@@ -119,7 +132,6 @@ const Homepage = () => {
             }
           </div>
         </main> */}
-
 
         {
         loading  ? (<>

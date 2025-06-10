@@ -9,6 +9,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from "react-redux";
 import { logOutUser } from "../store/slices/authSlice";
 import Shimmer from './Shimmer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage , faCircleInfo , faMap , faHome ,faArrowAltCircleLeft , faFaceSadCry  , faFaceSmile  , faRightFromBracket  } from '@fortawesome/free-solid-svg-icons';
 
 const Student = () => {
 
@@ -71,13 +73,19 @@ const filteredClgs = colleges.filter((res) => res.collegeName==searchText)
       <div className = ' z-10 sticky top-0 left-0  border  h-[55px] bg-slate-400 flex flex-row space-x-[15px] justify-center ' > 
         <>
           <div className='    top-0   flex items-center shadow-lg h-[90px] md:h-[90px] bg-slate-200  z-10 sticky  w-screen  border  flex-row  justify-between   ' >   
-              <div className=' relative top-2     '>
+              <div className=' relative top-2 hidden md:block     '>
                   <img className='md:h-[200px] md:w-[200px] h-[200px] w-[200px]  ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
-              <div className='relative flex flex-row justify-between px-[10px] gap-10  '>
+              <div className='relative md:flex md:justify-between md:px-[100px]  md:gap-32  gap-2 flex ml-20   '>
                 {/* <div className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  '> <button >Home</button></div> */}
                 <input className=' relative h-8  text-center hover:shadow-md rounded-md ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input>
-                <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500    ' onClick={ ()=>{  console.log("clicked");    dispatch(logOutUser()) ; navigate("/")    }   }>Logout</button></div>
+                 <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500   ' onClick={ ()=>{   navigate("/"); dispatch(logOutUser()) ;console.log("clicked");  }  }>
+                                                          <h1 className='hidden md:block '  >LogOut</h1>
+                                                          <h1 className=' md:hidden '  >   <FontAwesomeIcon icon={faRightFromBracket } />     </h1>
+                                                          <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                                                                  LogOut
+                                                          </div>
+                                      </button></div>
               </div>
           </div>
         </>
