@@ -1,42 +1,62 @@
-import React  from 'react'
-import { useState } from 'react';
+import React from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const Otp = () => {
-
-  const [otp , setOtp] = useState('');
-  const [email , setEmail] = useState('');
-
-
+  const [otp, setOtp] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
-    const user = {email,otp}
-      e.preventDefault();
-      try {
-      const res= await axios.post("https://roomiez-backend-deployment.onrender.com/api/v1/auth/sendotp",{email:email})
-        res.data && window.location.replace("/signup");
-      } catch (error) {
-        console.log(error)
-      }
+    const user = { email, otp };
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        "https://roomiez-backend-deployment.onrender.com/api/v1/auth/sendotp",
+        { email: email }
+      );
+      res.data && window.location.replace("/signup");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-    
   return (
     <>
       <div className=" text-red-400 text-md font-bold underline">
-          Hello Signup
+        Hello Signup
       </div>
       <div>
         <form className="flex flex-col">
-          <input type="email" value={email} className="rounded-3xl h-10 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-100" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
-          <input type="text" value={otp} className="rounded-3xl h-10 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-100" placeholder="Otp" onChange={(e)=>{setOtp(e.target.value)}}/>
+          <input
+            type="email"
+            value={email}
+            className="rounded-3xl h-10 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-100"
+            placeholder="Email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          <input
+            type="text"
+            value={otp}
+            className="rounded-3xl h-10 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-100"
+            placeholder="Otp"
+            onChange={(e) => {
+              setOtp(e.target.value);
+            }}
+          />
         </form>
-        <div className="flex  "> 
-          <button className="px-8 rounded-3xl py-3 border-2 hover:bg-[#303030] border-[#303030]" onClick={handleSubmit}  >Otp</button>
+        <div className="flex  ">
+          <button
+            className="px-8 rounded-3xl py-3 border-2 hover:bg-[#303030] border-[#303030]"
+            onClick={handleSubmit}
+          >
+            Otp
+          </button>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Otp
+export default Otp;
