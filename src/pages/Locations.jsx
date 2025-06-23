@@ -60,9 +60,9 @@ const Locations = () => {
               <div className=' hidden md:block   relative top-2    '>
                     <img className='md:h-[210px] md:w-[210px] h-[200px] w-[200px]   ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
-              <div className='  mr-2    relative flex flex-row justify-between md:px-[100px] md:gap-20  gap-8  '>
+              <div className='     relative flex flex-row md:justify-between md:px-[100px] md:gap-20  gap-8  w-screen justify-around  '>
               <div className='relative ml-1  w-[150px] md:'> <input className=' relative h-8  text-center hover:shadow-md rounded-md w-40 md:w- ' placeholder='Search' onChange={(e) => {setSearchText(e.target.value.replace(/\s+/g, ''))}}  ></input> </div>
-              <div className='relative'>{ (Type == "Admin" )? (  <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500' onClick={()=>{navigate(`/addcollege`)}}>
+              <div className='relative'>{ (Type == "Admin" )? (  <div > <button className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500 ' onClick={()=>{navigate(`/addcollege`)}}>
 
                                    <h1 className='hidden md:block '  > Add New College </h1>
                                    <h1 className=' md:hidden '  >  <FontAwesomeIcon icon={faUniversity } />   </h1>

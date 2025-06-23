@@ -40,7 +40,7 @@ const Signin = () => {
   return (
     <>
       <div className='h-screen bg-gray-200 overflow-y-hidden     '>
-          <div className='   top-0   flex items-center shadow-lg h-[70px]   md:h-[105px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >
+          <div className='    top-0   flex items-center shadow-lg h-[70px]   md:h-[105px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ' >
               <div className='relative top-2   '>
                   <img className='md:h-[260px] md:w-[260px] h-[150px] w-[150px]   ' src='https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png' />
               </div>
@@ -52,7 +52,7 @@ const Signin = () => {
           <div className='min-h-screen'>
             <div className='relative flex flex-col    min-h-screen' >
                   <div className='relative  flex justify-center items-center  '>
-                      <div className='   sm:text-center text-2xl   relative  bg-gray-200  md:text-4xl text-center md:text-center md:mt-9'>
+                      <div className='   sm:text-center text-2xl   relative  bg-gray-200  md:text-4xl text-center md:text-center md:mt-9 mt-9'>
                           Welcome! We're excited to have you join our community.
                       </div>
                   </div>

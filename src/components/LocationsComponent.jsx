@@ -55,40 +55,32 @@ const LocationsComponent = (props) => {
 
         {/* <div className='  relative  h-[50px] w-[50px] border-2 border-black m-2 '> */}
 
-        <div class=" rounded overflow-hidden shadow-lg h-[300px] w-screen ">
+       <div class="max-w-sm rounded overflow-hidden shadow-lg h-[300px]">
 
-          <div class="px-6 py-4   space-y-4">
-            <div class="font-bold text-xl mb-2">Area : {locaddress}</div>
-            <p class="relative text-gray-700 text-base  space-y-4 ">
-              {/* Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil. */}
+  <div class="px-6 py-4 space-y-4 break-words">
+    <div class="font-bold text-xl mb-2 break-words whitespace-normal">
+      Area: <span class="break-all">{locaddress}</span>
+    </div>
 
-              <h4>House Owner Name : {houseOwnerName} </h4>
-              <h4>Contact Number : {contactNumber} </h4>
-              <h4>Address :  {locaddress} </h4>
-              <h4>Distance : {distance}  </h4>
-              
+    <div class="text-gray-700 text-base space-y-2 break-words">
+      <p class="break-all">House Owner Name: {houseOwnerName}</p>
+      <p class="break-all">Contact Number: {contactNumber}</p>
+      <p class="break-all">Address: {locaddress}</p>
+      <p class="break-all">Distance: {distance}</p>
+    </div>
+  </div>
 
+  {isAvail === true ? (
+    <div class="px-6 pt-4 pb-2">
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+        Available
+      </span>
+    </div>
+  ) : (
+    <div></div>
+  )}
+</div>
 
-
-            </p>
-          </div>
-
-
-
-          {
-            isAvail==true ? (  <div class="px-6 pt-4 pb-2">
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Available</span>
-             </div>):(<div></div>)
-          }
-
-        {/* <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-          Button
-        </button> */}
-
-         
-
-
-        </div>
 
 
         {/* </div> */}
