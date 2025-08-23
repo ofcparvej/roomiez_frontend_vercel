@@ -16,10 +16,9 @@ const Dummy = (props) => {
     localStorage.removeItem("token11");
     navigate("/");
   }
-
-    useEffect(() => {
-      const token = localStorage.getItem("token11");
-      if (token.length <= 4) navigate("/");
+ useEffect(() => {
+      const token = sessionStorage.getItem('authSessionToken');
+      if (!token) navigate("/");
     }, []);
 
   return (

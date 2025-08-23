@@ -27,10 +27,10 @@ const Contributor = () => {
     navigate("/");
   }
 
-    useEffect(() => {
-      const token = localStorage.getItem("token11");
-      if (token.length <= 4) navigate("/");
-    }, []);
+   useEffect(() => {
+        const token = sessionStorage.getItem('authSessionToken');
+        if (!token) navigate("/");
+      }, []);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

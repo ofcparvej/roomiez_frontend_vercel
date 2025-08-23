@@ -25,6 +25,10 @@ const Signin = () => {
       );
       let token11 = res.data.token;
       localStorage.setItem("token11", token11);
+
+       const token = token11;
+      sessionStorage.setItem('authSessionToken', token11);
+
       const { email, accountType } = res.data;
       const response = { email, accountType };
       dispatch(logInUser(response));

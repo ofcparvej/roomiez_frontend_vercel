@@ -17,9 +17,9 @@ const Otp = () => {
   }
 
     useEffect(() => {
-    const token = localStorage.getItem("token11");
-    if (token.length <= 4) navigate("/");
-  }, []);
+         const token = sessionStorage.getItem('authSessionToken');
+         if (!token) navigate("/");
+       }, []);
 
   
 

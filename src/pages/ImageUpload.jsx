@@ -22,9 +22,9 @@ const ImageUpload = (props) => {
   }
 
     useEffect(() => {
-      const token = localStorage.getItem("token11");
-      if (token.length <= 4) navigate("/");
-    }, []);
+         const token = sessionStorage.getItem('authSessionToken');
+         if (!token) navigate("/");
+       }, []);
 
   const [count, setCount] = useState(1);
   const [file, setfile] = useState("");
