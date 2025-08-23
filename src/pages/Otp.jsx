@@ -5,6 +5,7 @@ import axios from "axios";
 const Otp = () => {
   const [otp, setOtp] = useState("");
   const [email, setEmail] = useState("");
+  
 
   const handleSubmit = async (e) => {
     const user = { email, otp };

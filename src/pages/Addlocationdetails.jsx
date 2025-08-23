@@ -8,6 +8,11 @@ const Addlocationdetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
+   useEffect(()=>{
+    const token = localStorage.getItem('token11');
+    if(token.length<=4) navigate("/");
+    } , []);
+
   return (
     <div>
       <div className="flex flex-col bg-gray-400  ">

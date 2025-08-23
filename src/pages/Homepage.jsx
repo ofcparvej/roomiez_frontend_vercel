@@ -8,12 +8,6 @@ import { useSelector } from "react-redux";
 import Shimmer from "./Shimmer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faImage,
-  faCircleInfo,
-  faMap,
-  faHome,
-  faArrowAltCircleLeft,
-  faLocationDot,
   faUniversity,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
@@ -25,10 +19,10 @@ const Homepage = () => {
   const navigate = useNavigate();
   const data1 = useSelector((state) => state.auth);
 
-  console.log("DAta => ", data1.accountType);
-  // if(data1.accountType==""){
-  //   navigate("/");
-  // }
+  useEffect(() => {
+    const token = localStorage.getItem("token11");
+    if (token.length <= 4) navigate("/");
+  }, []);
 
   useEffect(() => {
     function fetchData() {
@@ -107,6 +101,7 @@ const Homepage = () => {
                 {" "}
                 <button
                   onClick={() => {
+                    localStorage.removeItem("token11");
                     navigate("/");
                   }}
                 >

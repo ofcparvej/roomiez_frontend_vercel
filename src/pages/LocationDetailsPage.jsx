@@ -43,6 +43,11 @@ const LocationDetailsPage = () => {
   const [contributorName, setcontributorName] = useState("");
   const [contributorContactNumber, setcontributorContactNumber] = useState("");
 
+  useEffect(() => {
+    const token = localStorage.getItem("token11");
+    if (token.length <= 4) navigate("/");
+  }, []);
+
   const handleRemove = () => {
     async function removeLoc() {
       const lodD = {

@@ -11,11 +11,7 @@ import { logOutUser } from "../store/slices/authSlice";
 // import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faImage,
-  faCircleInfo,
-  faMap,
   faHome,
-  faArrowAltCircleLeft,
   faLocationDot,
   faUniversity,
   faRightFromBracket,
@@ -24,15 +20,26 @@ import {
 const Locations = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token11");
+    if (token.length <= 4) navigate("/");
+  }, []);
+
   const data = useSelector((state) => state.auth);
   const Type = data.accountType;
   const [searchText, setSearchText] = useState("");
-  // const [vec , setVec] = useState([{}])
   const { collegeCode } = useParams();
 
-  // const data = useSelector((state) => state.auth);
   console.log("DAta => ", data.accountType);
   const accType = data.accountType;
+
+  const data1 = useSelector((state) => state.auth);
+
+  console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
 
   const params = {
     collegeCode: collegeCode,
@@ -47,7 +54,6 @@ const Locations = () => {
         { params }
       )
       .then((res) => {
-        console.log("RES-------------------------------------->", res.data);
         setLocations(res.data.Locations);
       });
   }, []);

@@ -11,6 +11,11 @@ const ImageUpload = (props) => {
   const id = props.id;
 
   const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token11");
+    if (token.length <= 4) navigate("/");
+  }, []);
+
   const [count, setCount] = useState(1);
   const [file, setfile] = useState("");
   const [image, setimage] = useState("");
@@ -57,7 +62,6 @@ const ImageUpload = (props) => {
         if (currUser == "Admin") navigate("/admin");
         else navigate("/home");
       }
-      // console.log("db obj----------------------->" , result2);
     } catch (err) {
       console.log(err);
     }

@@ -10,22 +10,18 @@ import { useDispatch } from "react-redux";
 import { logOutUser } from "../store/slices/authSlice";
 import Shimmer from "./Shimmer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faImage,
-  faCircleInfo,
-  faMap,
-  faHome,
-  faArrowAltCircleLeft,
-  faFaceSadCry,
-  faFaceSmile,
-  faRightFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Student = () => {
   history.pushState(null, null, location.href);
   window.onpopstate = function (event) {
     history.go(1);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token11");
+    if (token.length <= 4) navigate("/");
+  }, []);
 
   const [searchText, setSearchText] = useState("");
   const data1 = useSelector((state) => state.auth);
@@ -101,6 +97,7 @@ const Student = () => {
                 <button
                   className="relative text-md  text-gray-400   text-center  rounded-md hover:text-slate-500    "
                   onClick={() => {
+                    localStorage.removeItem("token11");
                     navigate("/");
                     dispatch(logOutUser());
                     console.log("clicked");

@@ -13,7 +13,12 @@ const Admin = () => {
     history.go(1);
   };
 
-  // const navigate = useNavigate();
+    useEffect(()=>{
+    const token = localStorage.getItem('token11');
+    if(token.length<=4) navigate("/");
+    } , []);
+
+
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.auth);

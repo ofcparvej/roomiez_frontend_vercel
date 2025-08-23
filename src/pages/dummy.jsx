@@ -29,8 +29,6 @@ const Dummy = (props) => {
               {props.data.collegeName}
             </div>
             <p class="text-gray-700 text-base  ">
-              {/* COLLEGE CODE : {props.data.collegeCode} */}
-              {/* <br></br> */}
               College Address : {props.data.address}
               <br></br>
             </p>

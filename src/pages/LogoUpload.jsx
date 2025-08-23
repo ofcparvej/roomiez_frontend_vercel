@@ -5,6 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 const LogoUpload = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token11");
+    if (token.length <= 4) navigate("/");
+  }, []);
+
   const [file, setfile] = useState("");
   const [image, setimage] = useState("");
   const { collegeCode } = useParams();

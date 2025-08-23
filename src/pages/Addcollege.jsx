@@ -10,6 +10,12 @@ const Addcollege = () => {
   const [address, setaddress] = useState("");
   const navigate = useNavigate();
 
+  // const token = localStorage.getItem('token11');
+   useEffect(()=>{
+    const token = localStorage.getItem('token11');
+    if(token.length<=4) navigate("/");
+    } , []);
+
   const handleSubmit = async (e) => {
     const college = { collegeCode, collegeName, collegeEmail, address };
     e.preventDefault();

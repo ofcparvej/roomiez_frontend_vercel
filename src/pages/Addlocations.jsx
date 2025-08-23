@@ -22,6 +22,11 @@ const Addlocations = () => {
 
   const navigate = useNavigate();
 
+   useEffect(()=>{
+    const token = localStorage.getItem('token11');
+    if(token.length<=4) navigate("/");
+    } , []);
+
   const handleSubmit = async (e) => {
     async function fetchData() {
       const token11 = localStorage.getItem("token11");

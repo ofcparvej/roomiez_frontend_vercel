@@ -28,8 +28,6 @@ const Loadingcomponent = (props) => {
               Loading ...
             </div>
             <p class="text-gray-700 text-base  ">
-              {/* COLLEGE CODE : {props.data.collegeCode} */}
-              {/* <br></br> */}
               College Address :<br></br>
               Loading ...
               <br></br>
