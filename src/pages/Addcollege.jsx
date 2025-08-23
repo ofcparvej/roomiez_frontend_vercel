@@ -1,7 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Addcollege = () => {
   const [collegeName, setcollegeName] = useState("");
@@ -10,11 +11,17 @@ const Addcollege = () => {
   const [address, setaddress] = useState("");
   const navigate = useNavigate();
 
-  // const token = localStorage.getItem('token11');
-   useEffect(()=>{
-    const token = localStorage.getItem('token11');
-    if(token.length<=4) navigate("/");
-    } , []);
+  const data1 = useSelector((state) => state.auth);
+
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
+
+    useEffect(() => {
+      const token = localStorage.getItem("token11");
+      if (token.length <= 4) navigate("/");
+    }, []);
 
   const handleSubmit = async (e) => {
     const college = { collegeCode, collegeName, collegeEmail, address };

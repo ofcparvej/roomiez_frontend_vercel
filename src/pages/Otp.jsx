@@ -1,10 +1,25 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import {useEffect} from "react"
+import { useSelector } from "react-redux";
 
 const Otp = () => {
   const [otp, setOtp] = useState("");
   const [email, setEmail] = useState("");
+
+      const data1 = useSelector((state) => state.auth);
+
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
+
+    useEffect(() => {
+    const token = localStorage.getItem("token11");
+    if (token.length <= 4) navigate("/");
+  }, []);
+
   
 
   const handleSubmit = async (e) => {

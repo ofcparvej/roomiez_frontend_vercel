@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logInUser } from "../store/slices/authSlice";
+import {useEffect} from "react"
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -13,10 +14,18 @@ const Admin = () => {
     history.go(1);
   };
 
-    useEffect(()=>{
-    const token = localStorage.getItem('token11');
-    if(token.length<=4) navigate("/");
-    } , []);
+
+  const data1 = useSelector((state) => state.auth);
+
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
+
+    useEffect(() => {
+      const token = localStorage.getItem("token11");
+      if (token.length <= 4) navigate("/");
+    }, []);
 
 
   const dispatch = useDispatch();

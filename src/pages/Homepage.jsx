@@ -18,12 +18,17 @@ const Homepage = () => {
   const [colleges, setColleges] = useState([{}]);
   const navigate = useNavigate();
   const data1 = useSelector((state) => state.auth);
+  
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
 
-  useEffect(() => {
-    const token = localStorage.getItem("token11");
-    if (token.length <= 4) navigate("/");
-  }, []);
-
+    useEffect(() => {
+      const token = localStorage.getItem("token11");
+      if (token.length <= 4) navigate("/");
+    }, []);
+    
   useEffect(() => {
     function fetchData() {
       axios

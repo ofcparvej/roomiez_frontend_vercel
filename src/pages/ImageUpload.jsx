@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import {useEffect} from "react"
 
 const ImageUpload = (props) => {
   const data = useSelector((state) => state.auth);
@@ -11,10 +12,18 @@ const ImageUpload = (props) => {
   const id = props.id;
 
   const navigate = useNavigate();
-  useEffect(() => {
-    const token = localStorage.getItem("token11");
-    if (token.length <= 4) navigate("/");
-  }, []);
+
+  const data1 = useSelector((state) => state.auth);
+
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
+
+    useEffect(() => {
+      const token = localStorage.getItem("token11");
+      if (token.length <= 4) navigate("/");
+    }, []);
 
   const [count, setCount] = useState(1);
   const [file, setfile] = useState("");

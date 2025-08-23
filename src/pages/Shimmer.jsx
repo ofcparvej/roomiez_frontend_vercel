@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Loadingcomponent from "./Loadingcomponent";
+import {useEffect} from "react"
 
 const Shimmer = () => {
   history.pushState(null, null, location.href);
@@ -11,16 +12,21 @@ const Shimmer = () => {
   };
 
   const [searchText, setSearchText] = useState("");
-  const data1 = useSelector((state) => state.auth);
-
-  // console.log("DAta => ", data1.accountType);
-  if (data1.accountType == "") {
-    navigate("/");
-  }
-
   const dispatch = useDispatch();
   const colleges = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
   const navigate = useNavigate();
+
+    const data1 = useSelector((state) => state.auth);
+  
+    // console.log("DAta => ", data1.accountType);
+    if (data1.accountType == "") {
+      navigate("/");
+    }
+  
+      useEffect(() => {
+      const token = localStorage.getItem("token11");
+      if (token.length <= 4) navigate("/");
+    }, []);
 
 
   const filteredClgs = colleges.filter((res) => res.collegeName == searchText);

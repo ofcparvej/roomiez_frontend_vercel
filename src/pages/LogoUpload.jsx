@@ -2,18 +2,26 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 const LogoUpload = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token11");
-    if (token.length <= 4) navigate("/");
-  }, []);
-
   const [file, setfile] = useState("");
   const [image, setimage] = useState("");
   const { collegeCode } = useParams();
+
+    const data1 = useSelector((state) => state.auth);
+
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
+
+    useEffect(() => {
+    const token = localStorage.getItem("token11");
+    if (token.length <= 4) navigate("/");
+  }, []);
 
   function previewFiles(file) {
     const reader = new FileReader();

@@ -3,15 +3,23 @@ import ImageUpload from "./ImageUpload";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import {useEffect} from "react"
 
 const Addlocationdetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-   useEffect(()=>{
-    const token = localStorage.getItem('token11');
-    if(token.length<=4) navigate("/");
-    } , []);
+  const data1 = useSelector((state) => state.auth);
+
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
+
+    useEffect(() => {
+      const token = localStorage.getItem("token11");
+      if (token.length <= 4) navigate("/");
+    }, []);
 
   return (
     <div>

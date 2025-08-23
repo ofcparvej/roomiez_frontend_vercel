@@ -11,6 +11,7 @@ import { Tooltip } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
 import { Link } from "react-scroll";
 
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faImage,
@@ -43,10 +44,17 @@ const LocationDetailsPage = () => {
   const [contributorName, setcontributorName] = useState("");
   const [contributorContactNumber, setcontributorContactNumber] = useState("");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token11");
-    if (token.length <= 4) navigate("/");
-  }, []);
+    const data1 = useSelector((state) => state.auth);
+  
+    // console.log("DAta => ", data1.accountType);
+    if (data1.accountType == "") {
+      navigate("/");
+    }
+  
+      useEffect(() => {
+        const token = localStorage.getItem("token11");
+        if (token.length <= 4) navigate("/");
+      }, []);
 
   const handleRemove = () => {
     async function removeLoc() {

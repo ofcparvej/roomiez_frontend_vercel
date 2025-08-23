@@ -1,10 +1,25 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CardHeader } from "@material-tailwind/react";
+import {useEffect} from "react"
+import { useSelector } from "react-redux";
 
 const Dummy = (props) => {
   const navigate = useNavigate();
   let logoUrl = props.data.collegeImgUrl;
+
+  
+  const data1 = useSelector((state) => state.auth);
+
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
+
+    useEffect(() => {
+      const token = localStorage.getItem("token11");
+      if (token.length <= 4) navigate("/");
+    }, []);
 
   return (
     <div className="  ">

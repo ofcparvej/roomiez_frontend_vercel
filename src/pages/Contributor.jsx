@@ -11,25 +11,29 @@ import Shimmer from "./Shimmer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
+
 const Contributor = () => {
   history.pushState(null, null, location.href);
   window.onpopstate = function (event) {
     history.go(1);
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token11");
-    if (token.length <= 4) navigate("/");
-  }, []);
+
+  const data1 = useSelector((state) => state.auth);
+
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
+
+    useEffect(() => {
+      const token = localStorage.getItem("token11");
+      if (token.length <= 4) navigate("/");
+    }, []);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
-  const data1 = useSelector((state) => state.auth);
-
-  if (data1.accountType == "") {
-    navigate("/");
-  }
 
   const [colleges, setColleges] = useState([{}]);
 

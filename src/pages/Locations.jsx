@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { logOutUser } from "../store/slices/authSlice";
+
 // import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,12 +21,6 @@ import {
 const Locations = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token11");
-    if (token.length <= 4) navigate("/");
-  }, []);
-
   const data = useSelector((state) => state.auth);
   const Type = data.accountType;
   const [searchText, setSearchText] = useState("");
@@ -40,6 +35,11 @@ const Locations = () => {
   if (data1.accountType == "") {
     navigate("/");
   }
+
+    useEffect(() => {
+    const token = localStorage.getItem("token11");
+    if (token.length <= 4) navigate("/");
+  }, []);
 
   const params = {
     collegeCode: collegeCode,
