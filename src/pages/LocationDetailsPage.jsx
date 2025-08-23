@@ -101,10 +101,6 @@ const LocationDetailsPage = () => {
           { params }
         )
         .then((response) => {
-          console.log(
-            "res R ================================================================================== res=>",
-            response
-          );
           setHouseOwnerName(response.data.foundLoc[0].houseOwnerName);
           setContactNumber(response.data.foundLoc[0].contactNumber);
           setDistance(response.data.foundLoc[0].distance);
@@ -342,7 +338,7 @@ const LocationDetailsPage = () => {
         <div
           ref={myRef}
           id="section2"
-          className="relative h-screen w-full  border  border-fuchsia-500 "
+          className="relative h-screen w-full  border   "
         >
           <div className="hidden md:block">
             <div class="    bg-gray-200   border  rounded overflow-hidden shadow-lg  min-h-screen justify-center items-center  flex flex-row     ">
@@ -404,7 +400,7 @@ const LocationDetailsPage = () => {
 
           {/* //..................... */}
 
-          <div className=" block md:hidden min-h-screen  border border-green-400">
+          <div className=" block md:hidden min-h-screen  border ">
             {/* <div class="    bg-gray-200   border  rounded overflow-hidden shadow-lg  min-h-screen justify-center items-center  flex flex-col     "> */}
             <div className="">
               <div className=" relative  gap-2 flex flex-col justify-center h-screen">
@@ -466,7 +462,7 @@ const LocationDetailsPage = () => {
         </div>
 
         <div
-          className="relative h-screen w-full border  border-gray-950 bg-gray-200  top-3   "
+          className="relative h-screen w-full border   bg-gray-200  top-3   "
           id="section3"
         >
           {/* <div className='relative    min-h-screen justify-center bottom-[-90px]  '> */}
