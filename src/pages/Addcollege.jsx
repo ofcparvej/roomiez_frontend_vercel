@@ -15,6 +15,7 @@ const Addcollege = () => {
 
   // console.log("DAta => ", data1.accountType);
   if (data1.accountType == "") {
+    localStorage.removeItem("token11");
     navigate("/");
   }
 
@@ -103,7 +104,7 @@ const Addcollege = () => {
                   }}
                   class="relative  bg-transparent hover:bg-slate-400 text-neutral-50 font-semibold hover:text-white py-2 px-4 border border-red-50 hover:border-transparent rounded"
                 >
-                  Add College
+                Go Back
                 </button>
                 {/* <ToastContainer autoClose={10000} /> */}
               </div>
@@ -179,7 +180,7 @@ const Addcollege = () => {
                     }}
                     class="relative w-2/3 md:w-[500px]  bg-transparent hover:bg-slate-400 text-neutral-50 font-semibold hover:text-white py-2 px-4 border border-red-50 hover:border-transparent rounded"
                   >
-                    Previous
+                    Go Back
                   </button>
                   {/* onClick={()=>{ navigate(`/locations/${id}`)}} */}
                   {/* <ToastContainer autoClose={10000} /> */}

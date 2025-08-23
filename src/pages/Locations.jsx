@@ -159,6 +159,7 @@ const Locations = () => {
                   <div
                     className="relative"
                     onClick={() => {
+                      localStorage.removeItem("token11");
                       navigate("/");
                       dispatch(logOutUser());
                       console.log("clicked");

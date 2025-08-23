@@ -23,6 +23,7 @@ const Contributor = () => {
 
   // console.log("DAta => ", data1.accountType);
   if (data1.accountType == "") {
+    localStorage.removeItem("token11");
     navigate("/");
   }
 
@@ -78,14 +79,14 @@ const Contributor = () => {
       <div className=" bg-gray-200  w-screen ">
         <div className=" z-10 sticky top-0 left-0  border   h-[55px]  flex flex-row space-x-[150px] justify-center ">
           <>
-            <div className="   top-0   flex items-center shadow-lg w-full   h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ">
-              <div className=" hidden md:block relative top-2    left-[-20px] ">
+            <div className="   top-0   flex items-center shadow-lg w-full   h-[90px] bg-slate-200  z-10 sticky   border  flex-row justify-center md:justify-between ">
+              <div className=" hidden md:block relative top-2  left-[-20px] ">
                 <img
                   className="md:h-[210px] md:w-[210px] h-[150px] w-[150px]  "
                   src="https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png"
                 />
               </div>
-              <div className="relative md:flex md:justify-between md:px-[100px]  md:gap-32  gap-2 flex ml-20    ">
+              <div className="relative md:flex md:justify-between md:px-[100px]  md:gap-52 gap-20  flex flex-row     ml-20    ">
                 <input
                   className=" relative h-8  text-center hover:shadow-md rounded-md "
                   placeholder="Search"
@@ -93,7 +94,7 @@ const Contributor = () => {
                     setSearchText(e.target.value.replace(/\s+/g, ""));
                   }}
                 ></input>
-                <div>
+                <div className="relative">
                   {" "}
                   <button
                     className="relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500   "
@@ -105,7 +106,7 @@ const Contributor = () => {
                     }}
                   >
                     <h1 className="hidden md:block ">LogOut</h1>
-                    <h1 className=" md:hidden ">
+                    <h1 className=" md:hidden relative ">
                       {" "}
                       <FontAwesomeIcon icon={faRightFromBracket} />{" "}
                     </h1>

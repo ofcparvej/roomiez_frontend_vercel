@@ -28,7 +28,7 @@ const Homepage = () => {
       const token = localStorage.getItem("token11");
       if (token.length <= 4) navigate("/");
     }, []);
-    
+
   useEffect(() => {
     function fetchData() {
       axios
@@ -92,7 +92,7 @@ const Homepage = () => {
 
               <div className="relative    ">
                 <input
-                  className="relative h-8  text-center hover:shadow-md rounded-md  w-[60px] md:w-[150px] "
+                  className="relative h-8  text-center hover:shadow-md rounded-md   md:w-[150px] "
                   placeholder="Search"
                   onChange={(e) => {
                     setSearchText(e.target.value.replace(/\s+/g, ""));
