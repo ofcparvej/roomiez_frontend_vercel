@@ -49,7 +49,7 @@ const Signup = () => {
         "https://roomiez-backend-deployment.onrender.com/api/v1/auth/signup",
         user
       );
-      console.log(res.data);
+      // console.log(res.data);
       res.data && navigate("/signin");
     } catch (error) {
       console.log(error);

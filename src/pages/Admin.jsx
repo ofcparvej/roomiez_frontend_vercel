@@ -32,7 +32,6 @@ const Admin = () => {
       email,
       password,
     };
-    console.log("res::B ", user);
     e.preventDefault();
     try {
       const res = await axios.post(

@@ -39,9 +39,7 @@ const Homepage = () => {
   }, []);
 
   const obj = data;
-  colleges.forEach((item) => {
-    console.log(item.collegeCode);
-  });
+
 
   const filteredClgs = colleges.filter((res) => res.collegeName == searchText);
 

@@ -31,12 +31,12 @@ const Locations = () => {
   const [searchText, setSearchText] = useState("");
   const { collegeCode } = useParams();
 
-  console.log("DAta => ", data.accountType);
+  // console.log("DAta => ", data.accountType);
   const accType = data.accountType;
 
   const data1 = useSelector((state) => state.auth);
 
-  console.log("DAta => ", data1.accountType);
+  // console.log("DAta => ", data1.accountType);
   if (data1.accountType == "") {
     navigate("/");
   }
@@ -67,7 +67,7 @@ const Locations = () => {
   );
 
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   return (
     <>

@@ -19,19 +19,19 @@ const LogoUpload = () => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      console.log(image);
+      // console.log(image);
       setimage(reader.result);
     };
   }
   const handleChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     setfile(file);
     previewFiles(file); // function
   };
 
   const handleSubmit = async (e) => {
-    console.log("handle submit called");
+    // console.log("handle submit called");
     e.preventDefault();
     const result = await axios.post(
       "https://roomiez-backend-deployment.onrender.com/api/v1/imageUpload",
@@ -48,7 +48,7 @@ const LogoUpload = () => {
           collegeCode: collegeCode, //from state
         }
       );
-      console.log("result2 => ", result2);
+      // console.log("result2 => ", result2);
       result2 && navigate("/admin");
     } catch (err) {
       console.log(err);

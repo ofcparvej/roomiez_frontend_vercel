@@ -325,7 +325,7 @@ const LocationDetailsPage = () => {
         </div>
 
         <div
-          className="relative     flex flex-row min-h-screen justify-center items-center bg-gray-100  border border-yellow-400 "
+          className="relative     flex flex-row min-h-screen justify-center items-center bg-gray-100  border "
           id="section1"
         >
           <ImageCarousel>

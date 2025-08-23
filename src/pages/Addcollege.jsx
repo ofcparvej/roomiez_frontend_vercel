@@ -36,7 +36,7 @@ const Addcollege = () => {
   };
 
   // const notify = () => toast.success("College Addedd Successfully !");
-  console.log("id->", collegeCode);
+  
 
   return (
     <div className="        flex flex-row min-h-screen justify-center items-center  border bg-slate-200  ">

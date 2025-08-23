@@ -26,7 +26,7 @@ const Student = () => {
   const [searchText, setSearchText] = useState("");
   const data1 = useSelector((state) => state.auth);
 
-  console.log("DAta => ", data1.accountType);
+  // console.log("DAta => ", data1.accountType);
   if (data1.accountType == "") {
     navigate("/");
   }
@@ -54,9 +54,7 @@ const Student = () => {
     fetchData();
   }, []);
 
-  colleges.forEach((item) => {
-    console.log(item.collegeCode);
-  });
+
 
   const [loading, setLoading] = useState(true);
 

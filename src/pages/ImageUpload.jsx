@@ -23,14 +23,14 @@ const ImageUpload = (props) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      console.log(image);
+      // console.log(image);
       setimage(reader.result);
     };
   }
 
   const handleChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     setfile(file);
     previewFiles(file); // function
   };
