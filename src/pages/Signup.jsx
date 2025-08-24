@@ -179,7 +179,7 @@ const Signup = () => {
                   <input
                     type="password"
                     value={confirmedPassword}
-                    className=" h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 font-light"
+                    className=" h-7 px-3 my-3 outline-none  bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-gray-200 hover:border-gray-700 text-center font-light"
                     placeholder="Confirmed Password"
                     onChange={(e) => {
                       setconfirmedPassword(e.target.value);
