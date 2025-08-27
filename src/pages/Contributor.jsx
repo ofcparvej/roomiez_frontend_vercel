@@ -11,13 +11,11 @@ import Shimmer from "./Shimmer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
-
 const Contributor = () => {
   history.pushState(null, null, location.href);
   window.onpopstate = function (event) {
     history.go(1);
   };
-
 
   const data1 = useSelector((state) => state.auth);
 
@@ -27,10 +25,10 @@ const Contributor = () => {
     navigate("/");
   }
 
-   useEffect(() => {
-        const token = sessionStorage.getItem('authSessionToken');
-        if (!token) navigate("/");
-      }, []);
+  useEffect(() => {
+    const token = sessionStorage.getItem("authSessionToken");
+    if (!token) navigate("/");
+  }, []);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -59,7 +57,6 @@ const Contributor = () => {
     fetchData();
   }, []);
 
-
   const filteredClgs = colleges.filter((res) => res.collegeName == searchText);
 
   const [loading, setLoading] = useState(true);
@@ -79,25 +76,24 @@ const Contributor = () => {
       <div className=" bg-gray-200  w-screen ">
         <div className=" z-10 sticky top-0 left-0  border   h-[55px]  flex flex-row space-x-[150px] justify-center ">
           <>
-            <div className="   top-0   flex items-center shadow-lg w-full   h-[90px] bg-slate-200  z-10 sticky   border  flex-row justify-center md:justify-between ">
-              <div className=" hidden md:block relative top-2  left-[-20px] ">
+            <div className="sticky top-0 z-10 flex h-[90px] w-full flex-row items-center justify-between border bg-slate-200 px-4 shadow-lg">
+              <div>
                 <img
-                  className="md:h-[210px] md:w-[210px] h-[150px] w-[150px]  "
+                  className="h-40 w-40 md:h-40 md:w-40"
                   src="https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png"
                 />
               </div>
-              <div className="relative md:flex md:justify-between md:px-[100px]  md:gap-52 gap-20  flex flex-row     ml-20    ">
+              <div className="flex items-center gap-4 md:gap-8">
                 <input
-                  className=" relative h-8  text-center hover:shadow-md rounded-md "
+                  className="relative h-8 rounded-md text-center hover:shadow-md"
                   placeholder="Search"
                   onChange={(e) => {
                     setSearchText(e.target.value.replace(/\s+/g, ""));
                   }}
                 ></input>
-                <div className="relative">
-                  {" "}
+                <div className="relative  h-8 rounded-md text-center hover:shadow-md">
                   <button
-                    className="relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500   "
+                    className="relative h-8 rounded-md text-center text-md text-gray-400 "
                     onClick={() => {
                       localStorage.removeItem("token11");
                       navigate("/");
@@ -105,12 +101,11 @@ const Contributor = () => {
                       console.log("clicked");
                     }}
                   >
-                    <h1 className="hidden md:block ">LogOut</h1>
-                    <h1 className=" md:hidden relative ">
-                      {" "}
-                      <FontAwesomeIcon icon={faRightFromBracket} />{" "}
+                    <h1 className="hidden md:block">LogOut</h1>
+                    <h1 className="relative md:hidden">
+                      <FontAwesomeIcon icon={faRightFromBracket} size="xl" />
                     </h1>
-                    <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                    <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
                       LogOut
                     </div>
                   </button>

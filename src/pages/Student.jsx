@@ -12,24 +12,23 @@ import Shimmer from "./Shimmer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
-
 const Student = () => {
   history.pushState(null, null, location.href);
   window.onpopstate = function (event) {
     history.go(1);
   };
 
-    const data1 = useSelector((state) => state.auth);
-  
-    // console.log("DAta => ", data1.accountType);
-    if (data1.accountType == "") {
-      navigate("/");
-    }
-  
-     useEffect(() => {
-          const token = sessionStorage.getItem('authSessionToken');
-          if (!token) navigate("/");
-        }, []);
+  const data1 = useSelector((state) => state.auth);
+
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("authSessionToken");
+    if (!token) navigate("/");
+  }, []);
 
   const [searchText, setSearchText] = useState("");
 
@@ -56,8 +55,6 @@ const Student = () => {
     fetchData();
   }, []);
 
-
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -76,43 +73,42 @@ const Student = () => {
     <div className="  ">
       <div className=" z-10 sticky top-0 left-0  border  h-[55px] bg-slate-400 flex flex-row space-x-[15px] justify-center ">
         <>
-          <div className="    top-0   flex items-center shadow-lg h-[90px] md:h-[90px] bg-slate-200  z-10 sticky  w-screen  border  flex-row  justify-between   ">
-            <div className=" relative top-2 hidden md:block     ">
+          <div className="sticky top-0 z-10 flex h-[90px] w-full flex-row items-center justify-between border bg-slate-200 px-4 shadow-lg">
+            {/* Logo with 40x40px size */}
+            <div>
               <img
-                className="md:h-[200px] md:w-[200px] h-[200px] w-[200px]  "
+                className="h-40 w-40"
                 src="https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png"
               />
             </div>
-            <div className="relative md:flex md:justify-between md:px-[100px]  md:gap-32   flex justify-center  w-screen gap-5   ">
-              {/* <div className='relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  '> <button >Home</button></div> */}
+
+            {/* Container for right-side items */}
+            <div className="flex items-center gap-6 md:gap-8">
               <input
-                className=" relative h-7  text-center hover:shadow-md rounded-md "
+                className="h-7 w-28 rounded-md text-center hover:shadow-md sm:w-auto"
                 placeholder="Search"
                 onChange={(e) => {
                   setSearchText(e.target.value.replace(/\s+/g, ""));
                 }}
               ></input>
-              <div>
-                {" "}
-                <button
-                  className="relative text-md  text-gray-400   text-center  rounded-md hover:text-slate-500    "
-                  onClick={() => {
-                    localStorage.removeItem("token11");
-                    navigate("/");
-                    dispatch(logOutUser());
-                    console.log("clicked");
-                  }}
-                >
-                  <h1 className="hidden md:block ">LogOut</h1>
-                  <h1 className=" md:hidden ">
-                    {" "}
-                    <FontAwesomeIcon icon={faRightFromBracket} size="xl" />{" "}
-                  </h1>
-                  <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
-                    LogOut
-                  </div>
-                </button>
-              </div>
+
+              <button
+                className="relative  text-md text-gray-400 hover:text-slate-500 h-7 w-28 rounded-md text-center sm:w-auto"
+                onClick={() => {
+                  localStorage.removeItem("token11");
+                  navigate("/");
+                  dispatch(logOutUser());
+                  console.log("clicked");
+                }}
+              >
+                <h1 className="hidden md:block">LogOut</h1>
+                <h1 className="md:hidden">
+                  <FontAwesomeIcon icon={faRightFromBracket} size="xl" />
+                </h1>
+                <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                  LogOut
+                </div>
+              </button>
             </div>
           </div>
         </>

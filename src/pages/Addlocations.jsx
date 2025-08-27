@@ -5,7 +5,7 @@ import { Textarea } from "@material-tailwind/react";
 import { ToastContainer, toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {useEffect} from "react"
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const Addlocations = () => {
@@ -17,6 +17,8 @@ const Addlocations = () => {
   const [description, setdescription] = useState("");
   const [lat, setLatitude] = useState("");
   const [lng, setLongitude] = useState("");
+  const [collegeLat, setCollegeLatitude] = useState("");
+  const [collegelLng, setCollegeLongitude] = useState("");
   const [contributorName, setcontributorName] = useState("");
   const [contributorContactNumber, setcontributorContactNumber] = useState("");
 
@@ -32,10 +34,10 @@ const Addlocations = () => {
     navigate("/");
   }
 
-     useEffect(() => {
-          const token = sessionStorage.getItem('authSessionToken');
-          if (!token) navigate("/");
-        }, []);
+  useEffect(() => {
+    const token = sessionStorage.getItem("authSessionToken");
+    if (!token) navigate("/");
+  }, []);
 
   const handleSubmit = async (e) => {
     async function fetchData() {
@@ -55,15 +57,32 @@ const Addlocations = () => {
         );
         const destinationAddress = data.data.found_collegeAdd[0].address;
         const originAddress = locationAddress;
-        const calculatedData = await axios.get(
-          `https://maps.gomaps.pro/maps/api/distancematrix/json?destinations=${destinationAddress}&origins=${originAddress}&key=${GO_MAP_KEY}`
+
+        const clgLatLng = await axios.get(
+          `https://api.openrouteservice.org/v2/directions/driving-car?api_key=eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjJiZjBmNTkxMjQ0MDRhZTA4ZWYzN2RkOGQyODg3YmY4IiwiaCI6Im11cm11cjY0In0=&start=77.750950,20.952527&end=77.756793,20.957546`
         );
-        const new_origin = calculatedData.data.origin_addresses[0];
-        const new_destination = calculatedData.data.destination_addresses[0];
-        const foundDistance =
-          calculatedData.data.rows[0].elements[0].distance.text;
-        const timetoreach =
-          calculatedData.data.rows[0].elements[0].distance.duration;
+
+        console.log(
+          "clgLat--------------------------------->",
+          clgLatLng.data.features[0].properties.summary.distance
+        );
+
+        //   const calculatedData = await axios.get(
+        //   `https://maps.gomaps.pro/maps/api/distancematrix/json?destinations=${destinationAddress}&origins=${originAddress}&key=${GO_MAP_KEY}`
+        // );
+
+        const foundDistanceInMeters =
+          clgLatLng.data.features[0].properties.summary.distance;
+        const distanceInKilometers = foundDistanceInMeters / 1000;
+
+        // const new_origin = calculatedData.data.origin_addresses[0];
+        // const new_destination = calculatedData.data.destination_addresses[0];
+        // const foundDistance =
+        //   calculatedData.data.rows[0].elements[0].distance.text;
+        // const timetoreach =
+        //   calculatedData.data.rows[0].elements[0].distance.duration;
+
+        const foundDistance = distanceInKilometers;
 
         const user = {
           houseOwnerName,
@@ -74,7 +93,9 @@ const Addlocations = () => {
           description,
           token11,
           foundDistance,
-          timetoreach,
+          collegeLat,
+          collegelLng,
+          // timetoreach,
           lat,
           lng,
           contributorName,
@@ -185,6 +206,24 @@ const Addlocations = () => {
                       placeholder="ENTER LONGITUDE"
                       onChange={(e) => {
                         setLongitude(e.target.value);
+                      }}
+                    ></input>
+                  </div>
+                  <div>
+                    <input
+                      className="border h-10 w-[500px] text-center font-light text-xl hover:border-gray-700 "
+                      placeholder="ENTER COLLEGE LATITUDE"
+                      onChange={(e) => {
+                        setCollegeLatitude(e.target.value);
+                      }}
+                    ></input>
+                  </div>
+                  <div>
+                    <input
+                      className="border h-10 w-[500px] text-center font-light text-xl hover:border-gray-700 "
+                      placeholder="ENTER COLLEGE LONGITUDE"
+                      onChange={(e) => {
+                        setCollegeLongitude(e.target.value);
                       }}
                     ></input>
                   </div>
@@ -357,6 +396,24 @@ const Addlocations = () => {
                     placeholder="ENTER LONGITUDE"
                     onChange={(e) => {
                       setLongitude(e.target.value);
+                    }}
+                  ></input>
+                </div>
+                <div>
+                  <input
+                    className="bborder  h-10  w-screen text-center font-light text-xl hover:border-gray-700"
+                    placeholder="ENTER COLLEGE LATITUDE"
+                    onChange={(e) => {
+                      setCollegeLatitude(e.target.value);
+                    }}
+                  ></input>
+                </div>
+                <div>
+                  <input
+                    className="border  h-10  w-screen text-center font-light text-xl hover:border-gray-700"
+                    placeholder="ENTER COLLEGE LONGITUDE"
+                    onChange={(e) => {
+                      setCollegeLongitude(e.target.value);
                     }}
                   ></input>
                 </div>

@@ -1,7 +1,7 @@
 import React from "react";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Addcollege = () => {
@@ -19,10 +19,10 @@ const Addcollege = () => {
     navigate("/");
   }
 
-      useEffect(() => {
-      const token = sessionStorage.getItem('authSessionToken');
-      if (!token) navigate("/");
-    }, []);
+  useEffect(() => {
+    const token = sessionStorage.getItem("authSessionToken");
+    if (!token) navigate("/");
+  }, []);
 
   const handleSubmit = async (e) => {
     const college = { collegeCode, collegeName, collegeEmail, address };
@@ -44,7 +44,6 @@ const Addcollege = () => {
   };
 
   // const notify = () => toast.success("College Addedd Successfully !");
-  
 
   return (
     <div className="        flex flex-row min-h-screen justify-center items-center  border bg-slate-200  ">
@@ -104,7 +103,7 @@ const Addcollege = () => {
                   }}
                   class="relative  bg-transparent hover:bg-slate-400 text-neutral-50 font-semibold hover:text-white py-2 px-4 border border-red-50 hover:border-transparent rounded"
                 >
-                Go Back
+                  Go Back
                 </button>
                 {/* <ToastContainer autoClose={10000} /> */}
               </div>

@@ -87,17 +87,6 @@ const Signin = () => {
                       Sign In
                     </button>
                   </div>
-                  <div className="relative flex flex-col gap-5">
-                    <button
-                      className="relative bg-slate-300  rounded-md top-4  "
-                      onClick={() => {
-                        navigate("/admin/signin");
-                      }}
-                    >
-                      {" "}
-                      Login As An Admin{" "}
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>

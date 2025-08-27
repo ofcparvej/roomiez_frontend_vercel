@@ -11,7 +11,6 @@ import { Tooltip } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
 import { Link } from "react-scroll";
 
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faImage,
@@ -43,18 +42,20 @@ const LocationDetailsPage = () => {
   const [collegeCode, setcollegeCode] = useState("");
   const [contributorName, setcontributorName] = useState("");
   const [contributorContactNumber, setcontributorContactNumber] = useState("");
+  const [collegeLat, setCollegeLatitude] = useState("");
+  const [collegelLng, setCollegeLongitude] = useState("");
 
-    const data1 = useSelector((state) => state.auth);
-  
-    // console.log("DAta => ", data1.accountType);
-    if (data1.accountType == "") {
-      navigate("/");
-    }
-  
-      useEffect(() => {
-           const token = sessionStorage.getItem('authSessionToken');
-           if (!token) navigate("/");
-         }, []);
+  const data1 = useSelector((state) => state.auth);
+
+  // console.log("DAta => ", data1.accountType);
+  if (data1.accountType == "") {
+    navigate("/");
+  }
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("authSessionToken");
+    if (!token) navigate("/");
+  }, []);
 
   const handleRemove = () => {
     async function removeLoc() {
@@ -109,11 +110,12 @@ const LocationDetailsPage = () => {
           { params }
         )
         .then((response) => {
+          console.log("getWala--->", response.data);
           setHouseOwnerName(response.data.foundLoc[0].houseOwnerName);
           setContactNumber(response.data.foundLoc[0].contactNumber);
           setDistance(response.data.foundLoc[0].distance);
           setExpectedRent(response.data.foundLoc[0].expectedRent);
-          setLocationAdress(response.data.foundLoc[0].locationDetails);
+          setLocationAdress(response.data.foundLoc[0].locationAddress);
           setDesc(response.data.foundLoc[0].description);
           setAvail(response.data.foundLoc[0].isAvailable);
           setContributor(response.data.foundLoc[0].contributorEmailId);
@@ -126,6 +128,8 @@ const LocationDetailsPage = () => {
           setcontributorContactNumber(
             response.data.foundLoc[0].contributorContactNumber
           );
+          setCollegeLatitude(response.data.foundLoc[0].collegeLat);
+          setCollegeLongitude(response.data.foundLoc[0].collegelLng);
         })
         .catch((error) => {
           // console.log("lat=>",lng)
@@ -141,7 +145,12 @@ const LocationDetailsPage = () => {
   const pos = {
     lat,
     lng,
+    collegeLat,
+    collegelLng,
+    locationAdress,
   };
+
+  console.log("pos->", pos);
 
   const storedValue = localStorage.getItem("newVal");
 
@@ -150,182 +159,170 @@ const LocationDetailsPage = () => {
       <div className="bg-gray-200">
         <div className=" z-10 sticky top-0 left-0  border   bg-gray-200 flex flex-row  justify-center ">
           <>
-            <div className="   top-0   flex items-center shadow-lg w-full   h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between ">
-              <div className=" relative top-2  md:left-0      ">
+            <div className="sticky top-0 z-10 flex items-center shadow-lg w-full h-[90px] bg-slate-200 border px-4">
+              <div className="flex flex-row items-center justify-around md:justify-between w-full">
                 <img
-                  className="h-[210px] w-[210px] hidden md:block  "
+                  className="h-40 w-40 md:h-[210px] md:w-[210px]"
                   src="https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png"
+                  alt="Roomiez Logo"
                 />
-              </div>
-              <div className="    relative flex flex-row justify-between  md:gap-20  gap-4  ">
-                <Tooltip content="Material Tailwind">
+
+                <div className="flex flex-row items-center md:gap-20">
+                  <Tooltip content="Material Tailwind">
+                    <Link
+                      className="relative text-xl text-gray-400 h-8 text-center rounded-md hover:text-slate-500"
+                      activeClass="active"
+                      to="section1"
+                      spy={true}
+                      smooth={true}
+                      duration={500}
+                    >
+                      <h1 className="hidden md:block">Location View</h1>
+                      <h1 className="md:hidden">
+                        <FontAwesomeIcon icon={faImage} />
+                      </h1>
+                      <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                        Preview
+                      </div>
+                    </Link>
+                  </Tooltip>
+
                   <Link
-                    className="relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500 "
+                    className="relative text-xl text-gray-400 h-8 text-center rounded-md hover:text-slate-500"
                     activeClass="active"
-                    to="section1"
+                    to="section2"
                     spy={true}
                     smooth={true}
                     duration={500}
                   >
-                    <h1 className="hidden md:block ">Location View</h1>
-                    <h1 className=" md:hidden ">
-                      {" "}
-                      <FontAwesomeIcon icon={faImage} />{" "}
+                    <h1 className="hidden md:block">Details</h1>
+                    <h1 className="md:hidden">
+                      <FontAwesomeIcon icon={faCircleInfo} />
                     </h1>
-                    <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
-                      Preview
+                    <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                      Details
                     </div>
                   </Link>
-                </Tooltip>
-                <Link
-                  className="relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  "
-                  activeClass="active"
-                  to="section2"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                >
-                  <h1 className="hidden md:block ">Details</h1>
-                  <h1 className=" md:hidden ">
-                    {" "}
-                    <FontAwesomeIcon icon={faCircleInfo} />{" "}
-                  </h1>
-                  <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
-                    Details
-                  </div>
-                </Link>
-                <Link
-                  className="relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  "
-                  activeClass="active"
-                  to="section3"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                >
-                  <h1 className="hidden md:block ">Map View</h1>
-                  <h1 className=" md:hidden ">
-                    {" "}
-                    <FontAwesomeIcon icon={faMapLocation} />{" "}
-                  </h1>
-                  <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
-                    Map View
-                  </div>
-                </Link>
+                  <Link
+                    className="relative text-xl text-gray-400 h-8 text-center rounded-md hover:text-slate-500"
+                    activeClass="active"
+                    to="section3"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    <h1 className="hidden md:block">Map View</h1>
+                    <h1 className="md:hidden">
+                      <FontAwesomeIcon icon={faMapLocation} />
+                    </h1>
+                    <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                      Map View
+                    </div>
+                  </Link>
 
-                <div className="relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ">
-                  <button
+                  <div className="relative text-xl text-gray-400 h-8 text-center rounded-md hover:text-slate-500">
+                    <button
+                      onClick={() => {
+                        collegeCode && navigate(`/locations/${collegeCode}`);
+                      }}
+                    >
+                      <h1 className="hidden md:block">Locations</h1>
+                      <h1 className="md:hidden">
+                        <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+                        <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                          prev page
+                        </div>
+                      </h1>
+                    </button>
+                  </div>
+                  <div
+                    className="relative text-xl text-gray-400 h-8 text-center rounded-md hover:text-slate-500"
                     onClick={() => {
-                      collegeCode && navigate(`/locations/${collegeCode}`);
+                      navigate("/home");
                     }}
                   >
-                    <h1 className="hidden md:block ">Locations</h1>
-                    <h1 className=" md:hidden ">
-                      {" "}
-                      <FontAwesomeIcon icon={faArrowAltCircleLeft} />
-                      <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
-                        prev page
+                    <button>
+                      <h1 className="hidden md:block">Home</h1>
+                      <h1 className="md:hidden">
+                        <FontAwesomeIcon icon={faHome} />
+                      </h1>
+                      <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                        Home
                       </div>
-                    </h1>
-                  </button>
-                </div>
-                <div
-                  className="relative text-xl  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  "
-                  onClick={() => {
-                    navigate("/home");
-                  }}
-                >
-                  {" "}
-                  <button>
-                    <h1 className="hidden md:block ">Home</h1>
-                    <h1 className=" md:hidden ">
-                      {" "}
-                      <FontAwesomeIcon icon={faHome} />{" "}
-                    </h1>
-                    <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
-                      Home
-                    </div>
-                  </button>
-                </div>
-                <div>
-                  {data.accountType != "Student" && currUser == contributor ? (
-                    <>
+                    </button>
+                  </div>
+                  <div>
+                    {data.accountType != "Student" &&
+                    currUser == contributor ? (
+                      <>
+                        <div>
+                          <label class="inline-flex items-center cursor-pointer">
+                            <button
+                              className="primary-btn"
+                              onClick={handleChange}
+                            >
+                              {
+                                <span class="font-medium text-xl">
+                                  {avail ? (
+                                    <div className="text-green-800">
+                                      <h1 className="hidden md:block">
+                                        Available
+                                      </h1>
+                                      <h1 className="md:hidden">
+                                        <FontAwesomeIcon icon={faFaceSmile} />
+                                      </h1>
+                                      <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                                        Available
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <div className="relative text-md text-gray-400 h-8 text-center rounded-md hover:text-slate-500">
+                                      <h1 className="hidden md:block">
+                                        Not Available
+                                      </h1>
+                                      <h1 className="md:hidden">
+                                        <FontAwesomeIcon icon={faFaceSadCry} />
+                                      </h1>
+                                      <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                                        Not Available
+                                      </div>
+                                    </div>
+                                  )}
+                                </span>
+                              }
+                            </button>
+                          </label>
+                        </div>
+                      </>
+                    ) : (
                       <div>
-                        <label class="inline-flex items-center cursor-pointer">
-                          <button
-                            className="primary-btn"
-                            onClick={handleChange}
-                          >
-                            {" "}
-                            {
-                              <span class="  font-medium   text-xl ">
-                                {avail ? (
-                                  <div className=" text-green-800">
-                                    <h1 className="hidden md:block ">
-                                      {" "}
-                                      Available
-                                    </h1>
-                                    <h1 className=" md:hidden ">
-                                      {" "}
-                                      <FontAwesomeIcon
-                                        icon={faFaceSmile}
-                                      />{" "}
-                                    </h1>
-                                    <div className=" text-sm  text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
-                                      Available
-                                    </div>
-                                  </div>
-                                ) : (
-                                  <div className="  relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500">
-                                    <h1 className="hidden md:block ">
-                                      Not Available
-                                    </h1>
-                                    <h1 className=" md:hidden ">
-                                      {" "}
-                                      <FontAwesomeIcon
-                                        icon={faFaceSadCry}
-                                      />{" "}
-                                    </h1>
-                                    <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
-                                      Not Available
-                                    </div>
-                                  </div>
-                                )}
-                              </span>
-                            }{" "}
-                          </button>
-                        </label>
-                      </div>
-                    </>
-                  ) : (
-                    <div>
-                      {
-                        <span class="  font-medium   text-xl ">
-                          {avail ? (
-                            <div className=" text-green-400 hover:text-green-500">
-                              <h1 className="hidden md:block "> Available</h1>
-                              <h1 className=" md:hidden ">
-                                {" "}
-                                <FontAwesomeIcon icon={faFaceSmile} />{" "}
-                              </h1>
-                            </div>
-                          ) : (
-                            <div className=" relative text-md   h-8  text-center text-slate-600  rounded-md hover:text-red-400">
-                              <h1 className="hidden md:block ">
-                                Not Available
-                              </h1>
-                              <h1 className=" md:hidden ">
-                                {" "}
-                                <FontAwesomeIcon icon={faFaceSadCry} />{" "}
-                              </h1>
-                              <div className=" text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
-                                Not Available
+                        {
+                          <span class="font-medium text-xl">
+                            {avail ? (
+                              <div className="text-green-400 hover:text-green-500">
+                                <h1 className="hidden md:block"> Available</h1>
+                                <h1 className="md:hidden">
+                                  <FontAwesomeIcon icon={faFaceSmile} />
+                                </h1>
                               </div>
-                            </div>
-                          )}
-                        </span>
-                      }
-                    </div>
-                  )}
+                            ) : (
+                              <div className="relative text-md h-8 text-center text-slate-600 rounded-md hover:text-red-400">
+                                <h1 className="hidden md:block">
+                                  Not Available
+                                </h1>
+                                <h1 className="md:hidden">
+                                  <FontAwesomeIcon icon={faFaceSadCry} />
+                                </h1>
+                                <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
+                                  Not Available
+                                </div>
+                              </div>
+                            )}
+                          </span>
+                        }
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -338,7 +335,13 @@ const LocationDetailsPage = () => {
         >
           <ImageCarousel>
             {slides.map((s) => (
-              <img className="relative object-cover " src={s} key={uuidv4()} />
+              // 4. Add these classes to make the image fill its container
+              <img
+                className="w-full h-full object-cover"
+                src={s}
+                key={uuidv4()}
+                alt="Carousel slide"
+              />
             ))}
           </ImageCarousel>
         </div>
@@ -349,57 +352,53 @@ const LocationDetailsPage = () => {
           className="relative h-screen w-full  border   "
         >
           <div className="hidden md:block">
-            <div class="    bg-gray-200   border  rounded overflow-hidden shadow-lg  min-h-screen justify-center items-center  flex flex-row     ">
-              <div className="relative   bg-slate-300  md:w-1/3 right-2  flex justify-center items-center md:h-full shadow-lg shadow-slate-600   sm:w-1/2  sm:h-screen      ">
-                <ul className="relative       flex-col   gap-y-6      h-[500px]    flex  justify-center  items-start    ">
-                  <div className="md:text-2xl sm:text-xl sm:ml-2  ">
-                    {" "}
-                    House Owner Name :
+            {/* The only change is 'items-start' is now 'items-center' */}
+            <div className="bg-gray-200 p-4 min-h-screen flex flex-col md:flex-row justify-center items-center gap-4">
+              {/* LEFT BOX */}
+              <div className="bg-slate-300 w-full md:w-1/2 lg:w-1/3 p-6 shadow-lg shadow-slate-600 rounded max-h-[85vh] overflow-y-auto">
+                <ul className="flex flex-col gap-y-6 justify-center">
+                  <div className="md:text-2xl font-mono  sm:text-xl break-words">
+                    House Owner Name:{" "}
                     <span className="hover:underline decoration-solid">
-                      {houseOwnerName}{" "}
-                    </span>{" "}
+                      {houseOwnerName}
+                    </span>
                   </div>
-                  <div className="md:text-2xl sm:text-xl sm:ml-2  ">
-                    Contact Number :{" "}
+                  <div className="md:text-2xl font-mono  sm:text-xl break-words">
+                    Distance From College:{" "}
                     <span className="hover:underline decoration-solid">
-                      {contactNumber}{" "}
-                    </span>{" "}
+                      {contactNumber}
+                    </span>
                   </div>
-                  <div className="md:text-2xl sm:text-xl sm:ml-2  ">
-                    Distance From College :{" "}
+                  <div className="md:text-2xl font-mono  sm:text-xl break-words">
+                    Expected Rent:{" "}
                     <span className="hover:underline decoration-solid">
-                      {contactNumber}{" "}
-                    </span>{" "}
+                      {expectedRent}
+                    </span>
                   </div>
-                  <div className="md:text-2xl sm:text-xl sm:ml-2  ">
-                    Expected Rent :{" "}
+                  <div className="md:text-2xl font-mono  sm:text-xl break-words">
+                    Location Address:{" "}
                     <span className="hover:underline decoration-solid">
-                      {expectedRent}{" "}
-                    </span>{" "}
+                      {locationAdress}
+                    </span>
                   </div>
-                  <div className="md:text-2xl sm:text-xl sm:ml-2  ">
-                    Location Address :{" "}
+                  <div className="md:text-2xl font-mono  sm:text-xl break-words">
+                    Contributor Name:{" "}
                     <span className="hover:underline decoration-solid">
-                      {locationAdress}{" "}
-                    </span>{" "}
+                      {contributorName}
+                    </span>
                   </div>
-                  <div className="md:text-2xl sm:text-xl sm:ml-2  ">
-                    Contributor Name :{" "}
+                  <div className="md:text-2xl font-mono  sm:text-xl break-words">
+                    Contributor Contact Number:{" "}
                     <span className="hover:underline decoration-solid">
-                      {contributorName}{" "}
-                    </span>{" "}
-                  </div>
-                  <div className="md:text-2xl sm:text-xl sm:ml-2  ">
-                    Contributor Contact Number :{" "}
-                    <span className="hover:underline decoration-solid">
-                      {contributorContactNumber}{" "}
-                    </span>{" "}
+                      {contributorContactNumber}
+                    </span>
                   </div>
                 </ul>
               </div>
-              {/* <div className='relative   h-[900px]   bg-slate-400  w-1   '> </div> */}
-              <div className="relative  border      bg-slate-300 md:w-1/3   left-2  text-xl  flex items-center md:h-full shadow-lg shadow-slate-600  sm:w-1/2 h-screen     ">
-                <div className=" font-mono  relative   leading-loose    md:h-[500px] md:text-2xl flex items-center justify-center px-3 py-3  sm:h-screen sm:text-xl        ">
+
+              {/* RIGHT BOX */}
+              <div className="bg-slate-300 w-full md:w-1/2 lg:w-1/3 p-6 shadow-lg shadow-slate-600 rounded max-h-[85vh] overflow-y-auto">
+                <div className="font-mono text-xl md:text-2xl flex items-center justify-center break-words leading-loose">
                   {desc}
                 </div>
               </div>
@@ -420,12 +419,6 @@ const LocationDetailsPage = () => {
                       <span className="hover:underline decoration-solid">
                         {houseOwnerName}{" "}
                       </span>{" "}
-                    </div>
-                    <div className="relative md:text-2xl sm:text-xl sm:ml-2">
-                      Contact Number :{" "}
-                      <span className="hover:underline decoration-solid">
-                        {contactNumber}{" "}
-                      </span>
                     </div>
                     <div className=" relative md:text-2xl sm:text-xl sm:ml-2">
                       Distance From College :{" "}

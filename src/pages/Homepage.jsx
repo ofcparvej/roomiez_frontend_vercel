@@ -18,16 +18,16 @@ const Homepage = () => {
   const [colleges, setColleges] = useState([{}]);
   const navigate = useNavigate();
   const data1 = useSelector((state) => state.auth);
-  
-  // console.log("DAta => ", data1.accountType);
+
+  console.log("DAta => ", data1.accountType);
   if (data1.accountType == "") {
     navigate("/");
   }
 
-    useEffect(() => {
-         const token = sessionStorage.getItem('authSessionToken');
-         if (!token) navigate("/");
-       }, []);
+  useEffect(() => {
+    const token = sessionStorage.getItem("authSessionToken");
+    if (!token) navigate("/");
+  }, []);
 
   useEffect(() => {
     function fetchData() {
@@ -44,7 +44,6 @@ const Homepage = () => {
   }, []);
 
   const obj = data;
-
 
   const filteredClgs = colleges.filter((res) => res.collegeName == searchText);
 
@@ -100,7 +99,7 @@ const Homepage = () => {
                 ></input>
               </div>
 
-              <div className="relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500  ">
+              <div className="relative text-md  text-gray-400 h-8  text-center  rounded-md hover:text-slate-500   ">
                 {" "}
                 <button
                   onClick={() => {
