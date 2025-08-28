@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 
 const LogoUpload = () => {
   const navigate = useNavigate();
@@ -52,6 +53,8 @@ const LogoUpload = () => {
     }
   };
 
+    const notify = () => toast.success("Image Uploaded successfully !");
+
   return (
     <div>
       <div className="relative    flex flex-row h-screen justify-center items-center  border bg-gray-200   ">
@@ -90,6 +93,7 @@ const LogoUpload = () => {
                       required
                       accept="image/png , image/jpeg , image/jfif"
                     />
+                     <ToastContainer autoClose={10000} />
                     <p class="text-xs font-medium text-gray-400 mt-2">
                       PNG, JPG SVG, WEBP, and GIF are Allowed.
                     </p>

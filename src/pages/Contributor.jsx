@@ -106,7 +106,7 @@ const Contributor = () => {
                       <FontAwesomeIcon icon={faRightFromBracket} size="xl" />
                     </h1>
                     <div className="text-sm text-slate-600 bg-gray-300 rounded opacity-0 hover:opacity-100 transition duration-200">
-                      LogOut
+                     LogOut
                     </div>
                   </button>
                 </div>

@@ -66,7 +66,7 @@ const Homepage = () => {
           <div className="        flex items-center shadow-lg h-[90px] md:h-[90px] bg-slate-200  z-10 sticky   border  flex-row  justify-between w-screen  ">
             <div className=" relative top-2   hidden md:block   ">
               <img
-                className="md:h-[200px] md:w-[200px]  w-[150px] h-[150px]  "
+                className="md:h-[200px] md:w-[200px]  w-40 h-40  "
                 src="https://res.cloudinary.com/dsjecjjig/image/upload/v1736416741/phd6yxxfulcqskyvemcd.png"
               />
             </div>
