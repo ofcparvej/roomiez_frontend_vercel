@@ -10,15 +10,15 @@ const Loadingcomponent = (props) => {
   const data1 = useSelector((state) => state.auth);
 
   // console.log("DAta => ", data1.accountType);
-  if (data1.accountType == "") {
-    localStorage.removeItem("token11");
-    navigate("/");
-  }
+  // if (data1.accountType == "") {
+  //   localStorage.removeItem("token11");
+  //   navigate("/");
+  // }
 
-    useEffect(() => {
-         const token = sessionStorage.getItem('authSessionToken');
-         if (!token) navigate("/");
-       }, []);
+  //   useEffect(() => {
+  //        const token = sessionStorage.getItem('authSessionToken');
+  //        if (!token) navigate("/");
+  //      }, []);
 
   return (
     <div className="   ">

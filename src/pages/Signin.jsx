@@ -25,10 +25,6 @@ const Signin = () => {
       );
       let token11 = res.data.token;
       localStorage.setItem("token11", token11);
-
-       const token = token11;
-      sessionStorage.setItem('authSessionToken', token11);
-
       const { email, accountType } = res.data;
       const response = { email, accountType };
       dispatch(logInUser(response));
@@ -87,9 +83,22 @@ const Signin = () => {
                       Sign In
                     </button>
                   </div>
+                  <div className="relative flex flex-col gap-5">
+                    <button
+                      className="relative bg-slate-300  rounded-md top-4  "
+                      onClick={() => {
+                        navigate("/admin/signin");
+                      }}
+                    >
+                      {" "}
+                      Login As An Admin{" "}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
+            {/* </> */}
+            {/* </div> */}
           </div>
         </div>
       </div>

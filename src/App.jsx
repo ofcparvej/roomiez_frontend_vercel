@@ -13,7 +13,7 @@ import Addlocationdetails from "./pages/Addlocationdetails";
 import Auth from "./pages/Auth";
 import LogoUpload from "./pages/LogoUpload";
 import Dummy from "./pages/dummy";
-// import Admin from "./pages/Admin";
+import Admin from "./pages/Admin";
 import { useSelector } from "react-redux";
 import Student from "./pages/Student";
 import Contributor from "./pages/Contributor";
@@ -32,7 +32,7 @@ function App() {
       <Routes>
         <Route path="/loading" element={<Shimmer />} />
         <Route path="/admin" element={<Homepage />} />
-        {/* <Route path="/admin/signin" element={<Admin />} /> */}
+        <Route path="/admin/signin" element={<Admin />} />
         <Route path="/" element={<Auth />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />

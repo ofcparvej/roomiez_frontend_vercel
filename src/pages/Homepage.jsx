@@ -19,15 +19,15 @@ const Homepage = () => {
   const navigate = useNavigate();
   const data1 = useSelector((state) => state.auth);
 
-  console.log("DAta => ", data1.accountType);
-  if (data1.accountType == "") {
-    navigate("/");
-  }
+  // console.log("DAta => ", data1.accountType);
+  // if (data1.accountType == "") {
+  //   navigate("/");
+  // }
 
-  useEffect(() => {
-    const token = sessionStorage.getItem("authSessionToken");
-    if (!token) navigate("/");
-  }, []);
+  // useEffect(() => {
+  //   const token = sessionStorage.getItem("authSessionToken");
+  //   if (!token) navigate("/");
+  // }, []);
 
   useEffect(() => {
     function fetchData() {
