@@ -17,14 +17,14 @@ const ImageUpload = (props) => {
 
   // console.log("DAta => ", data1.accountType);
   if (data1.accountType == "") {
-    localStorage.removeItem("token11");
+    sessionStorage.removeItem("token11");
     navigate("/");
   }
 
-    useEffect(() => {
-         const token = sessionStorage.getItem('authSessionToken');
-         if (!token) navigate("/");
-       }, []);
+  useEffect(() => {
+      const token = sessionStorage.getItem("token11");
+      if (!token) navigate("/");
+    }, []);
 
   const [count, setCount] = useState(1);
   const [file, setfile] = useState("");

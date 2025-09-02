@@ -50,9 +50,10 @@ const LocationDetailsPage = () => {
  }
 
  useEffect(() => {
-  const token = sessionStorage.getItem("authSessionToken");
-  if (!token) navigate("/");
- }, [navigate]);
+     const token = sessionStorage.getItem("token11");
+     if (!token) navigate("/");
+   }, []);
+
 
  const handleRemove = () => {
   async function removeLoc() {

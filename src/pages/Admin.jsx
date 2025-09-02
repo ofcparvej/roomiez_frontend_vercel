@@ -36,7 +36,7 @@ const Admin = () => {
       );
 
       let token11 = res.data.token;
-      localStorage.setItem("token11", token11);
+      sessionStorage.setItem("token11", token11);
       //  dispatch(logInUser(response));
       const { email, accountType } = res.data;
       const response = { email, accountType };

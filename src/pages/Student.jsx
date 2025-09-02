@@ -26,7 +26,7 @@ const Student = () => {
   }
 
   useEffect(() => {
-    const token = sessionStorage.getItem("authSessionToken");
+    const token = sessionStorage.getItem("token11");
     if (!token) navigate("/");
   }, []);
 

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import sessionStorage from "redux-persist/es/storage/session";
 
 const Addcollege = () => {
   const [collegeName, setcollegeName] = useState("");
@@ -15,14 +16,15 @@ const Addcollege = () => {
 
   // console.log("DAta => ", data1.accountType);
   if (data1.accountType == "") {
-    localStorage.removeItem("token11");
+    sessionStorage.removeItem("token11");
     navigate("/");
   }
 
   useEffect(() => {
-    const token = sessionStorage.getItem("authSessionToken");
-    if (!token) navigate("/");
-  }, []);
+      const token = sessionStorage.getItem("token11");
+      if (!token) navigate("/");
+    }, []);
+
 
   const handleSubmit = async (e) => {
     const college = { collegeCode, collegeName, collegeEmail, address };

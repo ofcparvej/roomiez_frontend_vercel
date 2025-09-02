@@ -27,10 +27,10 @@ const Locations = () => {
   navigate("/");
  }
 
- useEffect(() => {
-  const token = sessionStorage.getItem('authSessionToken');
-  if (!token) navigate("/");
- }, []);
+useEffect(() => {
+    const token = sessionStorage.getItem("token11");
+    if (!token) navigate("/");
+  }, []);
 
  const [locations, setLocations] = useState([]);
 

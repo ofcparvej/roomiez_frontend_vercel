@@ -13,6 +13,11 @@ const LogoUpload = () => {
 
   const data1 = useSelector((state) => state.auth);
 
+  // useEffect(() => {
+  //     const token = sessionStorage.getItem("token11");
+  //     if (!token) navigate("/");
+  //   }, []);
+
   function previewFiles(file) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
